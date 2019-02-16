@@ -1,0 +1,81 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Absolute and relative error</title>
+  <meta name="description" content="Website about numerical methods for A Level Further Maths MEI 2017">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="../site.webmanifest">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/main.css">
+
+  <meta name="theme-color" content="#ff0000">
+
+  <link href="https://fonts.googleapis.com/css?family=Lato|Staatliches" rel="stylesheet">
+</head>
+
+<body>
+  <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+  <!-- Add your site or application content here -->
+
+  <div class="content">
+    <h1>Absolute and relative error</h1>
+    <p>An approximation is any value that is similar but not equal to its actual value.</p>
+    <p>Approximations may be occur for many reasons. These include: </p>
+    <ol>
+      <li>Rounding</li>
+      <li>Simplifications made in the modelling of a problem</li>
+      <li>Calculations using approximations of irrational numbers</li>
+    </ol>
+    <p>Approximations are often used when the exact value is too difficult to be worth finding or when a computer can only store a finite number of decimal places.</p>
+    <p>An example of an approximation is the value 3.14 being used as an approximation of pi.</p>
+    <div class="math-wrapper">
+      <p>$$\text{let } X = \text{approximation}$$</p>
+      <p>$$\text{let } x = \text{exact value}$$</p>
+      <p>$$\text{absolute error} = X - x$$</p>
+      <p>$$\text{relative error} = \frac{X - x}{x} \text{ (if }x \neq 0)$$</p>
+    </div>
+    <p>Absolute errors show the difference between an approximation and its exact value while relative errors take into account the ratio of the error to the exact value.</p>
+    <div class="wrapper">
+      <table>
+        <tr>
+          <th>Exact value</th>
+          <th>Approximation</th>
+          <th>Absolute error</th>
+          <th>Relative error (6d.p.)</th>
+        </tr>
+        <tr>
+          <th>5.43</th>
+          <th>5.4</th>
+          <th>-0.03</th>
+          <th>-0.005525</th>
+        </tr>
+        <tr>
+          <th>1642</th>
+          <th>2000</th>
+          <th>358</th>
+          <th>0.218027</th>
+        </tr>
+        <tr>
+          <th>0.05</th>
+          <th>0.1</th>
+          <th>0.05</th>
+          <th>1</th>
+        </tr>
+      </table>
+    </div>
+    <p><a href="../index.html"> Back </a></p>
+  </div>
+  <script src="../js/vendor/modernizr-3.6.0.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML"></script>
+  <script src="../js/main.js"></script>
+
+</html>

@@ -106,8 +106,6 @@ html, body {
   background-color: #ff7070;
   font-family: 'Lato', sans-serif;
   height: auto;
-  display: flex;
-  flex-flow: column;
 }
 
 body {
@@ -117,7 +115,6 @@ body {
 .content {
   max-width: 50rem;
   width: 100%;
-  min-height: 100%;
   margin: 0 auto;
   background-color: white;
   padding: 1px;
@@ -129,8 +126,12 @@ h1, h2, h3 {
   font-family: 'Staatliches', cursive;
 }
 
-a, div, li {
+div, li {
   display: block;
+}
+
+a {
+  margin: 0;
 }
 
 ol {
@@ -154,8 +155,24 @@ li ol > li:before {
   content: counters(item, ".") " ";
 }
 
+.math-wrapper * {
+  margin: 0;
+}
 
+.math-wrapper {
+  overflow-x: auto;
+}
 
+.wrapper {
+  width: calc(100% - 2rem);
+  display: block;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  margin: 0;
+}
 
 
 
