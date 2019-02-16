@@ -7,7 +7,7 @@
  * Kroc Camen, and the H5BP dev community and team.
  */
 
- 
+
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
@@ -97,10 +97,62 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+body * {
+  margin: 1rem;
+  box-sizing: border-box;
+}
 
+html, body {
+  background-color: #ff7070;
+  font-family: 'Lato', sans-serif;
+  height: auto;
+  display: flex;
+  flex-flow: column;
+}
 
+body {
+  padding: 1rem;
+}
 
+.content {
+  max-width: 50rem;
+  width: 100%;
+  min-height: 100%;
+  margin: 0 auto;
+  background-color: white;
+  padding: 1px;
+  z-index: 1;
+  border-radius: 0.25rem;
+}
 
+h1, h2, h3 {
+  font-family: 'Staatliches', cursive;
+}
+
+a, div, li {
+  display: block;
+}
+
+ol {
+  list-style-type: none;
+  counter-reset: item;
+  padding: 0;
+}
+
+ol > li {
+  display: table;
+  counter-increment: item;
+}
+
+ol > li:before {
+  content: counters(item, ".") ". ";
+  display: table-cell;
+  padding-right: 1rem;
+}
+
+li ol > li:before {
+  content: counters(item, ".") " ";
+}
 
 
 
@@ -192,7 +244,7 @@ textarea {
   clear: both;
 }
 
- 
+
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
    These examples override the primary ('mobile first') styles.
@@ -210,7 +262,7 @@ textarea {
     /* Style adjustments for high resolution devices */
 }
 
- 
+
 /* ==========================================================================
    Print styles.
    Inlined to avoid the additional HTTP request:
@@ -286,5 +338,3 @@ textarea {
         page-break-after: avoid;
     }
 }
-
-
