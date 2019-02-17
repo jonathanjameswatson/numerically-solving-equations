@@ -161,12 +161,7 @@ li ol > li:before {
 
 .math-wrapper {
   overflow-x: auto;
-}
-
-.wrapper {
-  width: calc(100% - 2rem);
-  display: block;
-  overflow-x: auto;
+  margin: 0;
 }
 
 table {
