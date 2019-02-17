@@ -169,6 +169,11 @@ table {
   margin: 0;
 }
 
+.spreadsheet {
+  width: 48rem;
+  height: 24rem;
+  box-sizing: content-box;
+}
 
 
 
