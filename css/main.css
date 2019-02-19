@@ -148,10 +148,11 @@ li ol>li:before {
 .math-wrapper {
   overflow-x: auto;
   margin: 0;
+  width: calc(100% - 2rem);
 }
 
 .spreadsheet {
-  width: 48rem;
+  width: calc(100% - 2rem);
   height: 24rem;
   box-sizing: content-box;
 }
