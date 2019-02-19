@@ -1,0 +1,130 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Absolute and relative error</title>
+  <meta name="description" content="Website about numerical methods for A Level Further Maths MEI 2017">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="../site.webmanifest">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/main.css">
+
+  <meta name="theme-color" content="#ff0000">
+
+  <link href="https://fonts.googleapis.com/css?family=Lato|Staatliches" rel="stylesheet">
+</head>
+
+<body>
+  <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+  <!-- Add your site or application content here -->
+
+  <div class="content">
+    <h1>Arithmetic using approximate values</h1>
+    <p>When doing arithmetic with approximate values, you may need to find the range of possible results in order to give your result to a suitable degree of accuracy.</p>
+    <p>In the below example, accuracy is lost as two numbers are added.</p>
+    <div class="math-wrapper">
+      <p>$$x = 0.5 \text{ (to 1 d.p.)}$$</p>
+      <p>$$y = 0.25 \text{ (to 2 d.p.)}$$</p>
+      <p>$$0.45 \leq x < 0.55$$</p> <p>$$0.245 \leq y < 0.255$$</p> <p>$$0.45 + 0.245 \leq x + y < 0.55 + 0.255$$</p> <p>$$0.695 \leq x + y < 0.805$$</p> <p>$$x + y = 1 \text{ (to 0 d.p.)}$$</p>
+    </div>
+    <p>In the below example, a lot of accuracy is lost as two nearly equal approximations are subtracted.</p>
+    <div class="math-wrapper">
+      <p>$$x = 1.55556 \text{ (to 6 s.f.)}$$</p>
+      <p>$$y = 1.55544 \text{ (to 6 s.f.)}$$</p>
+      <p>$$1.555555 \leq x < 1.555565$$</p> <p>$$1.555435 \leq y < 1.555445$$</p> <p>$$1.555555 - 1.555445 \leq x - y < 1.555565 - 1.555435$$</p> <p>$$0.00011 \leq x - y < 0.00013$$</p> <p>$$x - y = 0.0001 \text{ (to 1 s.f.)}$$</p>
+    </div>
+    <p>The below example shows how to find errors in approximate values being added.</p>
+    <div class="math-wrapper">
+      <p>$$\text{For the exact value } x = 0.123\text{, } X = 0.1 \text{ is an approximation which is correct to 1 decimal place.}$$</p>
+      <p>$$\text{For the exact value } y = 0.456 \text{, } Y = 0.5 \text{ is an approximation which is correct to 1 decimal place.}$$</p>
+      <p>$$x + y = 0.579$$</p>
+      <p>$$X + Y = 0.6$$</p>
+      <p>$$\text{Absolute error in }X + Y = 0.021$$</p>
+    </div>
+    <p>Below are some rules on finding boundaries.</p>
+    <div class="math-wrapper">
+      <p>$$a \leq x < b$$</p>
+      <p>$$c \leq y < d$$</p>
+      <p>$$a + c \leq x + y < b + d$$</p>
+      <p>$$ac \leq xy < bd$$</p>
+      <p>$$a - d \leq x - y < b - c$$</p>
+      <p>$$\frac{a}{d} \leq \frac{x}{y} < \frac{b}{c}$$</p>
+    </div>
+    <h2>Intermediate rounding</h2>
+    <p>Computers can only work with a
+      limited amount of storage at once. Because of this, values are rounded as they are being used.</p>
+    <p>Intermediate rounding is where the numbers used in a calculation are rounded throughout the calculation instead of at the end.</p>
+    <p>If a computer can only store 2 significant figures at once, the same calculations may give different results if they are done in order.</p>
+    <div class="math-wrapper">
+      <p>$$64 \times 2 \times 12 = (64 \times 2) \times 12$$</p>
+      <p>$$64 \times 2 = 128 = 130 \text{ (to 2 s.f)}$$</p>
+      <p>$$130 \times 12 = 1560 = 1600 \text{ (to 2 s.f)}$$</p>
+      <p>$$64 \times 2 \times 12 = 64 \times (2 \times 12)$$</p>
+      <p>$$2 \times 12 = 24 = 24 \text{ (to 2 s.f)}$$</p>
+      <p>$$64 \times 24 = 1536 = 1500 \text{ (to 2 s.f)}$$</p>
+    </div>
+    <p>Most computers use many more significant figures or decimal places, but outputs still differ with different orders of operations. This often occurs in calculations involving decimals with many zeroes or irrational numbers.</p>
+    <h2>Propagation of relative error</h2>
+    <div class="math-wrapper">
+      <p>$$X \text{ is an approximation to } x \text{ with relative error r}$$</p>
+      <p>$$Y \text{ is an approximation to } y \text{ with relative error s}$$</p>
+    </div>
+    <p>The below example shows the propagation of relative error when multiplying approximations.</p>
+    <div class="math-wrapper">
+
+      <p>$$\frac{X - x}{x} = r$$</p>
+      <p>$$\frac{Y - y}{y} = s$$</p>
+      <p>$$X = xr + x = x(1 + r)$$</p>
+      <p>$$Y = ys + y = y(1 + s)$$</p>
+      <p>$$XY = xy(1 + r)(1 + s)$$</p>
+      <p>$$XY = xy(1 + r + s + rs)$$</p>
+      <p>$$r \text{ and } s \text{ are very small so } rs \approx 0$$</p>
+      <p>$$XY \approx xy(1 + r + s) \approx xy + xy(r + s)$$</p>
+      <p>$$\frac{XY - xy}{xy} \approx r + s$$</p>
+    </div>
+    <p>The below example shows the propagation of relative error when dividing approximations.</p>
+    <div class="math-wrapper">
+      <p>$$\frac{X}{Y} = \frac{x(1 + r)}{y(1 + s)}$$</p>
+      <p>$$\frac{Xy}{Yx} = \frac{1 + r}{1 + s}$$</p>
+      <p>$$\frac{Xy}{Yx} = \frac{(1 + r)(1 - s)}{(1 + s)(1 - s)}$$</p>
+      <p>$$\frac{Xy}{Yx} = \frac{1 + r - s - rs}{1 - s^2}$$</p>
+      <p>$$r \text{ and } s \text{ are very small so } rs \approx 0$$</p>
+      <p>$$s \text{ is very small so } s^2 \approx 0$$</p>
+      <p>$$\frac{Xy}{Yx} \approx 1 + r - s$$</p>
+      <p>$$\frac{Xy}{Yx} - 1\approx r - s$$</p>
+      <p>$$\frac{Xy}{Yx} - \frac{Yx}{Yx}\approx r - s$$</p>
+      <p>$$\frac{Xy - Yx}{Yx} \approx r - s$$</p>
+      <p>$$\frac{\frac{Xy - Yx}{Y}}{x} \approx r - s$$</p>
+      <p>$$\frac{y(\frac{Xy - Yx}{Yy})}{x} \approx r - s$$</p>
+      <p>$$\frac{y(\frac{X}{Y} - \frac{x}{y})}{x} \approx r - s$$</p>
+      <p>$$\frac{\frac{X}{Y} - \frac{x}{y}}{\frac{x}{y}} \approx r - s$$</p>
+    </div>
+    <p>The above examples give the statement below: </p>
+    <div class="math-wrapper">
+      <p>$$r + s \text{ and } r - s \leq \lvert r \rvert + \lvert s \rvert \text{ so}$$</p>
+      <p>$$\lvert r \rvert + \lvert s \rvert \text{ is an estimate of the maximum possible relative error when using }\\ XY \text{ as an approximation to } xy \text{ or } \frac{X}{Y} \text{ as an approximation to } \frac{x}{y} \text{.}$$</p>
+    </div>
+    <h2>Large changes in numerical processes</h2>
+    <p>Sometimes, a small change in input will greatly change the output of a numerical process. For example, </p>
+    <div class="math-wrapper">
+      <p>$$f(x) = 2x^2-4x+2 \text{ has one real root}$$</p>
+      <p>$$g(x) = 2x^2-4x+2.00001 \text{ has no real roots}$$</p>
+    </div>
+    <p>The turning point of the curve with a y-intercept of 2 is at y = 0. If the y-intercept is increased, the turning point will be raised above the x-axis so curve will not have any roots.</p>
+    <p>Many of these problems involve coefficients changing to drastically change y-intercepts and gradients as well as the intersection of functions. In order to avoid problems occuring, perform calculations with a high accuracy in order to reduce rounding errors.
+    <p><a href="../index.html"> Back </a></p>
+  </div>
+  <script src="../js/vendor/modernizr-3.6.0.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML"></script>
+  <script src="../js/main.js"></script>
+</body>
+
+</html>
