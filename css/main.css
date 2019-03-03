@@ -84,7 +84,6 @@ textarea {
    Author's custom styles
    ========================================================================== */
 body * {
-  margin: 1rem;
   box-sizing: border-box;
 }
 
@@ -110,6 +109,11 @@ body {
 
 h1, h2, h3 {
   font-family: 'Staatliches', cursive;
+  margin: 1rem;
+}
+
+p {
+  margin: 1rem;
 }
 
 div, li {
@@ -124,11 +128,13 @@ ol {
   list-style-type: none;
   counter-reset: item;
   padding: 0;
+  margin: 1rem;
 }
 
 ol>li {
   display: table;
   counter-increment: item;
+  margin: 1rem;
 }
 
 ol>li:before {
@@ -141,19 +147,18 @@ li ol>li:before {
   content: counters(item, ".") " ";
 }
 
-.math-wrapper * {
-  margin: 0;
-}
-
 .math-wrapper {
   overflow-x: auto;
-  margin: 0;
 }
 
 .spreadsheet {
   width: calc(100% - 2rem);
   height: 24rem;
   box-sizing: content-box;
+  margin: 1rem;
+  border-radius: 0.25rem;
+  border-width: 0;
+}
 }
 
 /* ==========================================================================
