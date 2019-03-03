@@ -159,6 +159,22 @@ li ol>li:before {
   border-radius: 0.25rem;
   border-width: 0;
 }
+
+.sketch {
+  width: calc(100vw - 48rem);
+  min-width: calc(100% - 2rem);
+  max-height: 24rem;
+  height: calc(50vw - 2rem);
+  margin: 1rem;
+}
+
+.sketch > iframe {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  border-width: 0;
 }
 
 /* ==========================================================================
