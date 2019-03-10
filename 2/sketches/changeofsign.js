@@ -1,5 +1,3 @@
-let t = 0;
-
 const getY = x => (x ** 3) - 0.5 * (x ** 2) + x - 0.5;
 let y;
 
@@ -10,9 +8,6 @@ const update = () => {
 
   y = getY(mouseX / width)
 };
-
-
-
 
 draw = () => {
   update();
