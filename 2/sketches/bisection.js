@@ -12,7 +12,7 @@ let moving;
 let original;
 
 const passTime = () => {
-  t = 0.25 / min(100, window.performance.now() - lastTime);
+  t = min(100, window.performance.now() - lastTime) / 1500;
   lastTime = window.performance.now();
 };
 

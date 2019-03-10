@@ -1,12 +1,17 @@
 let t = 0;
+let lastTime = 0;
+
 const roots = new Array(3);
 
 const getY = x => roots.map(root => x - root * width).reduce((a, b) => a * b);
 
+const passTime = () => {
+  t += min(100, window.performance.now() - lastTime) / 2500;
+  lastTime = window.performance.now();
+};
+
 const update = () => {
-  if (frameRate()) {
-    t += 0.3 / frameRate();
-  }
+  passTime();
 
   for (let i = 0; i < roots.length; i += 1) {
     roots[i] = noise(t + 1000 * i) / roots.length + i / roots.length;
