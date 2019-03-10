@@ -1,0 +1,57 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Bisection method</title>
+  <meta name="description" content="Website about numerical methods for A Level Further Maths MEI 2017">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="../site.webmanifest">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/main.css">
+
+  <meta name="theme-color" content="#ff0000">
+
+  <link href="https://fonts.googleapis.com/css?family=Lato|Staatliches" rel="stylesheet">
+</head>
+
+<body>
+  <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+  <!-- Add your site or application content here -->
+
+  <div class="content">
+    <h1>Bisection Method</h1>
+    <p>The bisection method is a numerical method used for finding the roots of an equation.</p>
+    <div class="math-wrapper">
+      <p>$$\text{One root of } f(x) = x^6 + 4x - 3 \text{ is } \alpha \text{.}$$</p>
+      <p>$$\text{Find } \alpha \text{ where } 0 < \alpha < 1 \text{.}$$</p>
+    </div>
+    <p>By considering whether or not a change of sign will occur, finding the value halfway between the boundaries will allow you to move one boundary and half the range of possible values for \(\alpha\).</p>
+    <div class="sketch" sketch="bisection"></div>
+    <p>Click the example to play or pause.</p>
+    <p>A table can be made to demonstrate this process.</p>
+    <div class="math-wrapper">
+      <p>$$\begin{array}{|c|c|c|c|c|c|c|}
+        \hline
+        a & f(a) & b & f(b) & c & f(c) & \text{Max |abs error| for } c \\ \hline
+        0 & -3 & 1 & 2 & 0.5 & -0.984 & 0.5 \\ \hline
+        0.5 & -0.984 & 1 & 2 & 0.75 & 0.178 & 0.25 \\ \hline
+        0.5 & -0.984 & 0.75 & 0.178 & 0.625 & -0.440 & 0.125 \\ \hline
+        \end{array}$$</p>
+    </div>
+    <p>In the above table, \(c\) is moved so that \(f(a)\) is always negative and \(f(b)\) is always positive.</p>
+    <p><a href="../index.html"> Back </a></p>
+  </div>
+  <script src="../js/vendor/modernizr-3.6.0.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML"></script>
+  <script src="../js/main.js"></script>
+</body>
+
+</html>
