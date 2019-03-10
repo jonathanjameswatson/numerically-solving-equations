@@ -1,12 +1,19 @@
+let t = 0;
+let lastTime = 0;
+
+let xLine;
+
 const getY = x => (x ** 3) - 0.5 * (x ** 2) + x - 0.5;
-let y;
+
+const passTime = () => {
+  t += min(100, window.performance.now() - lastTime) / 2500;
+  lastTime = window.performance.now();
+};
 
 const update = () => {
-  if (frameRate()) {
-    t += 0.3 / frameRate();
-  }
+  passTime();
 
-  y = getY(mouseX / width)
+  xLine = 0.25 + noise(t) / 2;
 };
 
 draw = () => {
@@ -15,6 +22,7 @@ draw = () => {
   background('#ff7070');
 
   noFill();
+  stroke('black');
   beginShape();
   for (let x = 0; x < width; x += 1) {
     vertex(x, height / 2 - getY(x / width) * 100000 / height);
@@ -23,22 +31,20 @@ draw = () => {
 
   line(0, height / 2, width, height / 2);
 
-  textAlign(CENTER, CENTER);
-  if (y > 0) {
-    fill('red');
-    text('+', mouseX, mouseY, width / 125);
+  if (getY(xLine) > 0) {
+    stroke('red');
   } else {
-    fill('blue');
-    text('-', mouseX, mouseY, width / 125);
+    stroke('blue');
   }
+
+  line(xLine * width, height / 2, xLine * width, height / 2 - getY(xLine) * 100000 / height);
+
+  noStroke();
 
   textAlign(LEFT, BASELINE);
   noFill();
   circle(width / 2, height / 2, width / 125);
   fill('black');
-  text('0.5', width / 2, height / 2);
 
-  text('x', width / 100, height / 2);
-
-  text(`y = ${y.toFixed(2)}`, width / 100, width / 40);
+  text(`x = ${xLine.toFixed(2)}, y = ${getY(xLine).toFixed(2)}`, width / 100, width / 40);
 };
