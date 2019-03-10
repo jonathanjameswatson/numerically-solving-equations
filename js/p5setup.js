@@ -3,6 +3,7 @@ let robotoMono;
 
 windowResized = () => {
   resizeCanvas(windowWidth, windowHeight);
+  textSize(width / 40);
 };
 
 preload = () => {
