@@ -93,13 +93,14 @@ draw = () => {
 
   textAlign(RIGHT, TOP);
   text('x', 0.9 * width, height / 2);
-  text('y', 0.1 * width, height * 0.1);
-
-  textAlign(LEFT, TOP);
   text('1', 0.1 * width, height * 0.1);
-  textAlign(LEFT, BASELINE);
+  textAlign(RIGHT, BASELINE);
   text('-1', 0.1 * width, height * 0.9);
 
+  textAlign(LEFT, TOP);
+  text('y', 0.1 * width, height * 0.1);
+
+  textAlign(LEFT, BASELINE);
   if (moving === 0) {
     text(`${original} < x < ${xs[1]}`, width / 100, width / 40);
   } else {
