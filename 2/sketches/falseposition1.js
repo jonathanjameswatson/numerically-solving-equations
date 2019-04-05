@@ -54,6 +54,9 @@ draw = () => {
   textAlign(CENTER, BASELINE);
   text('0.5', width / 2, height / 2);
 
+  textAlign(CENTER, TOP);
+  text('c', width * (0.1 + 0.8 * c), height / 2);
+
   textAlign(RIGHT, TOP);
   text('x', 0.9 * width, height / 2);
   text('3', 0.1 * width, height * 0.1);

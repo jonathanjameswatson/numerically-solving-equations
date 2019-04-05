@@ -28,12 +28,12 @@
 
   <div class="content">
     <h1>False position (an application of linear interpolation)</h1>
-    <p>Linear interpolation can be used to approximate a function as a straight line with two coordinates. THe root of this straight line can be used as an approximation to the root of the actual function.</p>
+    <p>Linear interpolation can be used to approximate a function as a straight line through two coordinates. The root of this straight line can be used as an approximation to the root of the actual function.</p>
     <div class="math-wrapper">
       <p>$$\text{One root of } f(x) = x^6 + 4x - 3 \text{ is } \alpha \text{.}$$</p>
       <p>$$\text{Find } \alpha \text{ where } 0 < \alpha < 1 \text{.}$$</p>
     </div>
-    <p>The root of the linear interpolation between \(a\) and \(b\) is known as \(c\).</p>
+    <p>The root of the line through \(a\) and \(b\) is known as \(c\).</p>
     <div class="sketch" sketch="falseposition1"></div>
     <p>To find \(c\), similar triangles can be drawn.</p>
     <div class="sketch" sketch="falseposition2"></div>
@@ -46,7 +46,7 @@
       <p>$$c(f(b) - f(a)) = af(b) - bf(a)$$</p>
       <p>$$c = \frac{af(b) - bf(a)}{f(b) - f(a)}$$</p>
     </div>
-    <p>Using this formula, \(c\) can be found like in the bisection method. However, the approximation to \(c\) is likely to be more accurate.</p>
+    <p>Using this formula, \(c\) can be found like in the bisection method. The approximation to \(c\) is likely to be more accurate using linear interpolation.</p>
     <div class="sketch" sketch="falseposition3"></div>
     <p class="sketch-label">Click the example to play or pause.</p>
     <p>A table can be made to demonstrate this process.</p>
