@@ -14,8 +14,8 @@ const buildIframeContents = (sketch, frame, doc) => {
   doc.head.appendChild(css);
 
   const scriptPath = `sketches/${sketch.getAttribute('sketch')}.js`;
-  appendScript(doc, scriptPath)
-    .then(() => { appendScript(doc, '../js/p5setup.js'); })
+  appendScript(doc, '../js/p5setup.js')
+    .then(() => { appendScript(doc, scriptPath); })
     .then(() => { appendScript(doc, 'https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.min.js'); });
 };
 
