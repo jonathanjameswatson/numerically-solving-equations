@@ -23,7 +23,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['katex/dist/katex.min.css'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -41,8 +41,20 @@ export default {
   modules: [
     // Doc: https://buefy.github.io/#/documentation
     'nuxt-buefy',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxtjs/markdownit'
   ],
+
+  markdownit: {
+    typographer: true,
+    linkify: true,
+    breaks: true,
+    use: [
+      'markdown-it-anchor',
+      '@liradb2000/markdown-it-katex',
+      'markdown-it-toc-done-right'
+    ]
+  },
   /*
    ** Build configuration
    */
@@ -50,11 +62,6 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {
-      config.module.rules.push({
-        test: /\.md$/i,
-        loader: 'raw-loader'
-      })
-    }
+    extend(config, ctx) {}
   }
 }
