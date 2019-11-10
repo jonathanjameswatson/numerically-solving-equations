@@ -1,23 +1,8 @@
-# numerically-solving-equations
+# Numerically Solving Equations
 
 > A website about numerically solving equations
 
-## Build Setup
-
-``` bash
-# install dependencies
-$ yarn install
-
-# serve with hot reload at localhost:3000
-$ yarn dev
-
-# build for production and launch server
-$ yarn build
-$ yarn start
-
-# generate static project
-$ yarn generate
-```
+## Maths
 
 $$\begin{array}{c}
 
@@ -29,5 +14,13 @@ $$\begin{array}{c}
 \nabla \cdot \vec{\mathbf{B}} & = 0
 
 \end{array}$$
+
+## Sketches
+
+::: sketch part1
+Sketch showing roots or something
+:::
+
+## More info
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

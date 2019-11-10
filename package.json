@@ -17,9 +17,11 @@
     "@nuxtjs/pwa": "^3.0.0-0",
     "katex": "^0.11.1",
     "markdown-it-anchor": "^5.2.5",
+    "markdown-it-container": "^2.0.0",
     "markdown-it-toc-done-right": "^4.1.0",
     "nuxt": "^2.0.0",
-    "nuxt-buefy": "^0.3.2"
+    "nuxt-buefy": "^0.3.2",
+    "v-runtime-template": "^1.10.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.0.1",

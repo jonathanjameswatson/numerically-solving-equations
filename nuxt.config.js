@@ -52,7 +52,28 @@ export default {
     use: [
       'markdown-it-anchor',
       '@liradb2000/markdown-it-katex',
-      'markdown-it-toc-done-right'
+      'markdown-it-toc-done-right',
+      [
+        'markdown-it-container',
+        'sketch',
+        {
+          validate(params) {
+            return params.trim().match(/^sketch\s+(.*)$/)
+          },
+          render(tokens, idx) {
+            console.log(tokens[idx].info)
+            const m = tokens[idx].info.trim().match(/^sketch\s+(.*)$/)
+
+            if (tokens[idx].nesting === 1) {
+              // opening tag
+              return `<div><card title=${m[1]} icon="user" />\n`
+            } else {
+              // closing tag
+              return '</div>\n'
+            }
+          }
+        }
+      ]
     ]
   },
   /*
@@ -62,6 +83,8 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend(config, ctx) {
+      config.resolve.alias.vue = 'vue/dist/vue.common'
+    }
   }
 }
