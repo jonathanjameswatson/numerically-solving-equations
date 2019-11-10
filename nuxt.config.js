@@ -23,7 +23,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['katex/dist/katex.min.css'],
+  css: ['katex/dist/katex.min.css', '~/assets/scss/main.scss'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -40,7 +40,7 @@ export default {
    */
   modules: [
     // Doc: https://buefy.github.io/#/documentation
-    'nuxt-buefy',
+    ['nuxt-buefy', { css: false }],
     '@nuxtjs/pwa',
     '@nuxtjs/markdownit'
   ],
@@ -61,7 +61,6 @@ export default {
             return params.trim().match(/^sketch\s+(.*)$/)
           },
           render(tokens, idx) {
-            console.log(tokens[idx].info)
             const m = tokens[idx].info.trim().match(/^sketch\s+(.*)$/)
 
             if (tokens[idx].nesting === 1) {
