@@ -4,6 +4,11 @@
 
 $primary: $red;
 
+.katex-html {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
 @import "~bulma/sass/utilities/derived-variables";
 
 @import '~bulma';
