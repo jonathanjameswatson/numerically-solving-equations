@@ -84,6 +84,7 @@ export default {
      */
     extend(config, ctx) {
       config.resolve.alias.vue = 'vue/dist/vue.common'
+      config.node = { fs: 'empty' }
     }
   }
 }
