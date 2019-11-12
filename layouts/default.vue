@@ -3,10 +3,9 @@
     <b-navbar type="is-primary" wrapper-class="container">
       <template slot="brand">
         <b-navbar-item tag="nuxt-link" to="/">
-          <img
-            src="~assets/buefy.png"
-            alt="Lightweight UI components for Vue.js based on Bulma"
-          />
+          <h1 class="title has-text-light is-6">
+            Numerically Solving Equations
+          </h1>
         </b-navbar-item>
       </template>
       <!--<template slot="start">
@@ -39,7 +38,7 @@
           </b-menu>
         </aside>
 
-        <div class="container column is-10">
+        <div class="container column is-8">
           <nuxt />
         </div>
       </div>
