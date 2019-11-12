@@ -42,7 +42,8 @@ export default {
     // Doc: https://buefy.github.io/#/documentation
     ['nuxt-buefy', { css: false }],
     '@nuxtjs/pwa',
-    '@nuxtjs/markdownit'
+    '@nuxtjs/markdownit',
+    '~/modules/routes.js'
   ],
 
   markdownit: {
