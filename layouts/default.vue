@@ -15,7 +15,10 @@
       </template>-->
 
       <template slot="end">
-        <b-navbar-item tag="a" href="#">
+        <b-navbar-item
+          tag="a"
+          href="https://github.com/jonathanjameswatson/numerically-solving-equations"
+        >
           GitHub
         </b-navbar-item>
       </template>
@@ -42,6 +45,8 @@
               @click="scrollToTop()"
               class="button-stick"
               icon-left="arrow-up"
+              type="is-primary"
+              outlined
             >
               Back to top
             </b-button>
@@ -53,6 +58,7 @@
               @click="scrollToTop()"
               class="mobile-button"
               icon-left="arrow-up"
+              type="is-link"
             >
               Back to top
             </b-button>

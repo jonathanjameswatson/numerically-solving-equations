@@ -42,13 +42,13 @@ html {
   margin-top: $gap;
   top: $gap;
 
-  @include touch {
+  @include mobile {
     display: none;
   }
 }
 
 .mobile-button {
-  @include desktop {
+  @include tablet {
     display: none !important;
   }
 }
