@@ -66,7 +66,7 @@ $$\begin{array}{c}
 
 Most computers use many more significant figures or decimal places, but outputs still differ with different orders of operations. This often occurs in calculations involving decimals with many zeroes or irrational numbers.
 
-## Propogation of relative error
+## Propagation of relative error
 
 $$\begin{array}{c}
 X \text{ is an approximation to } x \text{ with relative error r} \\\\
