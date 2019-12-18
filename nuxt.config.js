@@ -19,7 +19,7 @@ export default {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: false,
   /*
    ** Global CSS
    */
@@ -98,5 +98,7 @@ export default {
       config.resolve.alias.vue = 'vue/dist/vue.common'
       config.node = { fs: 'empty' }
     }
-  }
+  },
+
+  transition: 'default'
 }

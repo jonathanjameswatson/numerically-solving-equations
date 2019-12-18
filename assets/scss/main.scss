@@ -19,4 +19,22 @@ html {
   margin-bottom: 1em;
 }
 
+.default-leave-active {
+  transition: all .2s linear;
+}
+
+.default-enter-active {
+  transition: all .25s ease-out;
+}
+
+.default-leave-active {
+  opacity: 0;
+  transform: translateY(20rem);
+}
+
+.default-enter {
+  opacity: 0;
+  transform: translateY(-20rem);
+}
+
 @import '~bulma';
