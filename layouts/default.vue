@@ -24,7 +24,7 @@
     <div class="main-content container">
       <section class="section">
         <div class="columns">
-          <aside class="column is-2">
+          <aside class="column is-2 sidebar">
             <b-menu>
               <b-menu-list aria-role="menu">
                 <b-menu-item
@@ -38,6 +38,13 @@
                 />
               </b-menu-list>
             </b-menu>
+            <b-button
+              @click="scrollToTop()"
+              class="button-stick"
+              icon-left="arrow-up"
+            >
+              Back to top
+            </b-button>
           </aside>
 
           <div class="column is-8 is-offset-1">
@@ -57,6 +64,9 @@ export default {
   methods: {
     onPage(pageName) {
       return `/${pageName}` === this.$route.path
+    },
+    scrollToTop() {
+      window.scrollTo(0, 0)
     }
   }
 }

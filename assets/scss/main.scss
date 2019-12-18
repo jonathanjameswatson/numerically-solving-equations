@@ -37,4 +37,10 @@ html {
   transform: translateY(-20rem);
 }
 
+.sidebar .button-stick {
+  position: sticky;
+  margin-top: $gap;
+  top: $gap;
+}
+
 @import '~bulma';
