@@ -4,11 +4,19 @@
 
 $primary: $red;
 
+@import "~bulma/sass/utilities/derived-variables";
+
+html {
+  scroll-behavior: smooth;
+}
+
 .katex-html {
   overflow-x: auto;
   overflow-y: hidden;
 }
 
-@import "~bulma/sass/utilities/derived-variables";
+.table-of-contents ol {
+  margin-bottom: 1em;
+}
 
 @import '~bulma';

@@ -31,6 +31,7 @@
                 :key="index"
                 :label="page.title"
                 :to="`/${page.name}`"
+                :active="onPage(page.name)"
                 tag="nuxt-link"
                 aria-role="menuitem"
               />
@@ -50,6 +51,11 @@
 export default {
   data() {
     return { pages: this.$store.state.contents }
+  },
+  methods: {
+    onPage(pageName) {
+      return `/${pageName}` === this.$route.path
+    }
   }
 }
 </script>

@@ -51,9 +51,20 @@ export default {
     linkify: true,
     breaks: true,
     use: [
-      'markdown-it-anchor',
+      [
+        'markdown-it-anchor',
+        {
+          permalink: true,
+          level: 2
+        }
+      ],
       '@liradb2000/markdown-it-katex',
-      'markdown-it-toc-done-right',
+      [
+        'markdown-it-toc-done-right',
+        {
+          level: 2
+        }
+      ],
       [
         'markdown-it-container',
         'sketch',
