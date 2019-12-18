@@ -1,5 +1,7 @@
 # Arithmetic using approximate values
 
+[[toc]]
+
 When doing arithmetic with approximate values, you may need to find the range of possible results in order to give your result to a suitable degree of accuracy.
 
 In the below example, accuracy is lost as two numbers are added.
