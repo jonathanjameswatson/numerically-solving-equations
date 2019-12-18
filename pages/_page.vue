@@ -1,9 +1,7 @@
 <template>
-  <section class="section">
-    <div class="content">
-      <v-runtime-template :template="content" />
-    </div>
-  </section>
+  <div class="content">
+    <v-runtime-template :template="content" />
+  </div>
 </template>
 
 <script>

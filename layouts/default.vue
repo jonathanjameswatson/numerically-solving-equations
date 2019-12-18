@@ -21,29 +21,31 @@
       </template>
     </b-navbar>
 
-    <section class="main-content container">
-      <div class="columns">
-        <aside class="column is-2 section">
-          <b-menu>
-            <b-menu-list aria-role="menu">
-              <b-menu-item
-                v-for="(page, index) in pages"
-                :key="index"
-                :label="page.title"
-                :to="`/${page.name}`"
-                :active="onPage(page.name)"
-                tag="nuxt-link"
-                aria-role="menuitem"
-              />
-            </b-menu-list>
-          </b-menu>
-        </aside>
+    <div class="main-content container">
+      <section class="section">
+        <div class="columns">
+          <aside class="column is-2">
+            <b-menu>
+              <b-menu-list aria-role="menu">
+                <b-menu-item
+                  v-for="(page, index) in pages"
+                  :key="index"
+                  :label="page.title"
+                  :to="`/${page.name}`"
+                  :active="onPage(page.name)"
+                  tag="nuxt-link"
+                  aria-role="menuitem"
+                />
+              </b-menu-list>
+            </b-menu>
+          </aside>
 
-        <div class="container column is-8">
-          <nuxt />
+          <div class="column is-8 is-offset-1">
+            <nuxt />
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </div>
 </template>
 
