@@ -41,6 +41,16 @@ html {
   position: sticky;
   margin-top: $gap;
   top: $gap;
+
+  @include touch {
+    display: none;
+  }
+}
+
+.mobile-button {
+  @include desktop {
+    display: none !important;
+  }
 }
 
 @import '~bulma';

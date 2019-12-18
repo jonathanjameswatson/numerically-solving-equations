@@ -49,6 +49,13 @@
 
           <div class="column is-8 is-offset-1">
             <nuxt />
+            <b-button
+              @click="scrollToTop()"
+              class="mobile-button"
+              icon-left="arrow-up"
+            >
+              Back to top
+            </b-button>
           </div>
         </div>
       </section>
