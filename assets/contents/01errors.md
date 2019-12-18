@@ -13,15 +13,10 @@ Approximations are often used when the exact value is too difficult to be worth 
 An example of an approximation is the value 3.14 being used as an approximation of $\pi$.
 
 $$\begin{array}{c}
-
-\text{let } X = \text{approximation} \\
-
-\text{let } x = \text{exact value} \\
-
-\text{absolute error} = X - x \\
-
-\text{relative error} = \frac{X - x}{x} \text{ (if }x \neq 0) \\
-
+\text{let } X = \text{approximation} \\\\
+\text{let } x = \text{exact value} \\\\
+\text{absolute error} = X - x \\\\
+\text{relative error} = \frac{X - x}{x} \text{ (if }x \neq 0)
 \end{array}$$
 
 Absolute errors show the difference between an approximation and its exact value while relative errors take into account the ratio of the error to the exact value.
