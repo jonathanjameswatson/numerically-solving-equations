@@ -1,40 +1,28 @@
+import utilities from './utilities.js'
+
 export default (p5) => {
-  let t = 0
-  let lastTime = 0
+  let sketch = null
+  let graph = null
 
   const roots = new Array(3)
 
-  let canvas = null
-
-  const getY = (x) =>
-    roots.map((root) => x - root * p5.width).reduce((a, b) => a * b)
-
-  const passTime = () => {
-    t += Math.min(100, window.performance.now() - lastTime) / 2500
-    lastTime = window.performance.now()
-  }
-
-  const resize = () => {
-    p5.resizeCanvas(
-      canvas.parentElement.offsetWidth,
-      canvas.parentElement.offsetHeight
-    )
-  }
+  const getY = (x) => roots.map((root) => x - root).reduce((a, b) => a * b)
 
   p5.setup = () => {
-    canvas = p5.createCanvas(16, 9).elt
-    resize()
+    sketch = new utilities.Sketch(p5)
+    graph = new utilities.Graph(sketch, 0.05, 0.1, 0.9, 0.8, 0, 0.5, 1, 0.1)
   }
 
   p5.windowResized = () => {
-    resize()
+    sketch.resize()
   }
 
   p5.update = () => {
-    passTime()
+    sketch.passTime()
 
     for (let i = 0; i < roots.length; i += 1) {
-      roots[i] = p5.noise(t + 1000 * i) / roots.length + i / roots.length
+      roots[i] =
+        p5.noise(sketch.time + 1000 * i) / roots.length + i / roots.length
     }
 
     roots.sort((a, b) => a - b)
@@ -45,28 +33,17 @@ export default (p5) => {
 
     p5.background('#ff7070')
 
-    p5.noFill()
-    p5.beginShape()
-    for (let x = 0; x < p5.width; x += 1) {
-      p5.vertex(x, p5.height / 2 - getY(x) / 125 / p5.height)
-    }
-    p5.endShape()
-
-    p5.line(0, p5.height / 2, p5.width, p5.height / 2)
+    graph.plotAxes()
+    graph.plotFunction(getY)
 
     roots.forEach((root) => {
-      p5.noFill()
-      p5.circle(root * p5.width, p5.height / 2, p5.width / 125)
-      p5.fill('black')
-      p5.text(root.toFixed(2), root * p5.width, p5.height / 2)
+      graph.plotRoot(root)
     })
 
-    p5.text('x', p5.width / 100, p5.height / 2)
+    // p5.text('x', p5.width / 100, p5.height / 2)
 
-    p5.text(
-      `y = ${roots.map((root) => `(x - ${root.toFixed(2)})`).join('')}`,
-      p5.width / 100,
-      p5.width / 40
-    )
+    sketch.displayDictionary({
+      y: roots.map((root) => `(x - ${root.toFixed(2)})`).join('')
+    })
   }
 }
