@@ -1,8 +1,8 @@
 # Absolute and relative errors
 
-An approximation is any value that is similar but not equal to its actual value.
+An approximation is any value that is similar but not equal to something else.
 
-Approximations may be occur for many reasons. These include:
+Approximations may be made for many reasons. These include:
 
 1. Rounding
 2. Simplifications made in the modelling of a problem
