@@ -16,11 +16,13 @@ export const actions = {
   async nuxtServerInit({ commit }) {
     const pageNames = await contentsGenerator()
     const contents = await Promise.all(
-      pageNames.map(async (name) => {
-        const content = await import(`~/assets/contents/${name}.md`)
-        const title = content.default.match(titleRegex)[1]
-        return { name, title }
-      })
+      pageNames
+        .filter((pageName) => pageName !== 'index')
+        .map(async (name) => {
+          const content = await import(`~/assets/contents/${name}.md`)
+          const title = content.default.match(titleRegex)[1]
+          return { name, title }
+        })
     )
     await commit('setContents', contents)
   }

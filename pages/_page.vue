@@ -3,15 +3,18 @@
 </template>
 
 <script>
-import Card from '~/components/Card'
-
 export default {
-  components: {
-    Card // eslint-disable-line vue/no-unused-components
-  },
-  async asyncData({ params }) {
-    const Content = await import(`~/assets/contents/${params.page}.md`)
-    return { content: Content.default }
+  async asyncData({ params, error }) {
+    const page = params.page || 'index'
+    try {
+      const Content = await import(`~/assets/contents/${page}.md`)
+      return { content: Content.default }
+    } catch (err) {
+      error({
+        statusCode: 404,
+        message: 'This page could not be found.'
+      })
+    }
   }
 }
 </script>
