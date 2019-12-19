@@ -4,6 +4,8 @@ export default (p5) => {
 
   const roots = new Array(3)
 
+  let canvas = null
+
   const getY = (x) =>
     roots.map((root) => x - root * p5.width).reduce((a, b) => a * b)
 
@@ -12,8 +14,20 @@ export default (p5) => {
     lastTime = window.performance.now()
   }
 
+  const resize = () => {
+    p5.resizeCanvas(
+      canvas.parentElement.offsetWidth,
+      canvas.parentElement.offsetHeight
+    )
+  }
+
   p5.setup = () => {
-    p5.createCanvas(700, 410)
+    canvas = p5.createCanvas(16, 9).elt
+    resize()
+  }
+
+  p5.windowResized = () => {
+    resize()
   }
 
   p5.update = () => {

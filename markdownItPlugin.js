@@ -1,9 +1,9 @@
 const renderSketch = (sketch) => {
-  return `<div class="sketch" sketch=${sketch}></div>`
+  return `<div class="sketch container-16-by-9" sketch=${sketch}></div>`
 }
 
 const renderIFrame = (link) => {
-  return `<div class="iframe-container"><iframe src="${link}"></iframe></div>`
+  return `<div class="container-16-by-9"><iframe src="${link}"></iframe></div>`
 }
 
 const plugin = (md, opts) => {

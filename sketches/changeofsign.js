@@ -4,6 +4,8 @@ export default (p5) => {
 
   let xLine
 
+  let canvas = null
+
   const getY = (x) => x ** 3 - 0.5 * x ** 2 + x - 0.5
 
   const passTime = () => {
@@ -11,8 +13,20 @@ export default (p5) => {
     lastTime = window.performance.now()
   }
 
+  const resize = () => {
+    p5.resizeCanvas(
+      canvas.parentElement.offsetWidth,
+      canvas.parentElement.offsetHeight
+    )
+  }
+
   p5.setup = () => {
-    p5.createCanvas(700, 410)
+    canvas = p5.createCanvas(16, 9).elt
+    resize()
+  }
+
+  p5.windowResized = () => {
+    resize()
   }
 
   p5.update = () => {
