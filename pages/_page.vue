@@ -1,16 +1,12 @@
 <template>
-  <div class="content">
-    <v-runtime-template :template="content" />
-  </div>
+  <div v-html="content" class="content" />
 </template>
 
 <script>
-import VRuntimeTemplate from 'v-runtime-template'
 import Card from '~/components/Card'
 
 export default {
   components: {
-    VRuntimeTemplate,
     Card // eslint-disable-line vue/no-unused-components
   },
   async asyncData({ params }) {

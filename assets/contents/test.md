@@ -17,9 +17,9 @@ $$\begin{array}{c}
 
 ## Sketches
 
-::: sketch part1
-Sketch showing roots or something
-:::
+```sketch
+part1
+```
 
 ## More info
 

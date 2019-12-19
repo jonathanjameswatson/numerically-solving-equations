@@ -34,3 +34,7 @@ $$-0.45 = -\frac{0.9}{2}$$
 The absolute error in the total will therefore be:
 
 $$1000 \times -0.45 = -450$$
+
+```IFrame
+https://docs.google.com/spreadsheets/d/e/2PACX-1vRKd5ny-fNfDVyh9Q_1DYqyWum7mKw38cOTSk4dMZBVHT9G6I_V1IdZmR0914UZyez9djSZqyVUUifU/pubhtml?widget=true&amp;headers=false
+```

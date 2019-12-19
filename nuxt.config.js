@@ -1,3 +1,5 @@
+import markdownItPlugin from './markdownItPlugin.js'
+
 export default {
   mode: 'universal',
   /*
@@ -65,26 +67,7 @@ export default {
           level: 2
         }
       ],
-      [
-        'markdown-it-container',
-        'sketch',
-        {
-          validate(params) {
-            return params.trim().match(/^sketch\s+(.*)$/)
-          },
-          render(tokens, idx) {
-            const m = tokens[idx].info.trim().match(/^sketch\s+(.*)$/)
-
-            if (tokens[idx].nesting === 1) {
-              // opening tag
-              return `<div><card title=${m[1]} icon="user" />\n`
-            } else {
-              // closing tag
-              return '</div>\n'
-            }
-          }
-        }
-      ]
+      markdownItPlugin
     ]
   },
   /*
@@ -95,10 +78,9 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {
-      config.resolve.alias.vue = 'vue/dist/vue.common'
       config.node = { fs: 'empty' }
     }
   },
 
-  transition: 'default'
+  pageTransition: 'default'
 }
