@@ -1,10 +1,8 @@
-@import "~bulma/sass/utilities/initial-variables";
-@import "~bulma/sass/utilities/functions";
-@import "~bulma/sass/utilities/mixins";
+@import "bulma/sass/utilities/initial-variables";
 
 $primary: $red;
 
-@import "~bulma/sass/utilities/derived-variables";
+@import "bulma/sass/utilities/_all";
 
 html {
   scroll-behavior: smooth;
@@ -68,4 +66,11 @@ html {
   }
 }
 
-@import '~bulma';
+@import "bulma/sass/base/_all.sass";
+@import "bulma/sass/components/menu.sass";
+@import "bulma/sass/components/navbar.sass";
+@import "bulma/sass/elements/button.sass";
+@import "bulma/sass/elements/container.sass";
+@import "bulma/sass/elements/content.sass";
+@import "bulma/sass/grid/columns.sass";
+@import "bulma/sass/layout/section.sass";
