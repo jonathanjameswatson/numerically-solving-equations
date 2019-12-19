@@ -1,5 +1,5 @@
 const renderSketch = (sketch) => {
-  return `<div class="p5">${sketch}</div>`
+  return `<div class="sketch" sketch=${sketch}></div>`
 }
 
 const renderIFrame = (link) => {

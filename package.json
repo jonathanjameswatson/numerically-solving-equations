@@ -20,7 +20,8 @@
     "markdown-it-toc-done-right": "^4.1.0",
     "mz": "^2.7.0",
     "nuxt": "^2.0.0",
-    "nuxt-buefy": "^0.3.2"
+    "nuxt-buefy": "^0.3.2",
+    "p5": "^0.10.2"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.0.1",

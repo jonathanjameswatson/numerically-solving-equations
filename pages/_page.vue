@@ -15,6 +15,14 @@ export default {
         message: 'This page could not be found.'
       })
     }
+  },
+  mounted() {
+    const P5 = require('p5')
+    const sketches = document.getElementsByClassName('sketch')
+    Array.from(sketches).forEach(async (sketch) => {
+      const p = await import(`~/sketches/${sketch.getAttribute('sketch')}.js`)
+      new P5(p.default, sketch) // eslint-disable-line
+    })
   }
 }
 </script>
