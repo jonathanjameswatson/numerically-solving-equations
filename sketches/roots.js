@@ -28,9 +28,10 @@ export default (p5) => {
     sketch.resize()
   }
 
-  p5.mouseClicked = () => {
-    if (sketch) {
+  p5.mouseClicked = (event) => {
+    if (event.target === sketch.canvas) {
       sketch.pause()
+      return false
     }
   }
 
