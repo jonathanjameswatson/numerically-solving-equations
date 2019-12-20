@@ -8,28 +8,34 @@ export default (p5) => {
 
   const getY = (x) => roots.map((root) => x - root).reduce((a, b) => a * b)
 
-  p5.setup = () => {
-    sketch = new utilities.Sketch(p5)
-    graph = new utilities.Graph(sketch, 0.05, 0.1, 0.9, 0.8, 0, 0.5, 1, 0.1)
-  }
-
-  p5.windowResized = () => {
-    sketch.resize()
-  }
-
-  p5.update = () => {
-    sketch.passTime()
+  const update = (s) => {
+    s.passTime()
 
     for (let i = 0; i < roots.length; i += 1) {
-      roots[i] =
-        p5.noise(sketch.time + 1000 * i) / roots.length + i / roots.length
+      roots[i] = p5.noise(s.time + 1000 * i) / roots.length + i / roots.length
     }
 
     roots.sort((a, b) => a - b)
   }
 
+  p5.setup = () => {
+    sketch = new utilities.Sketch(p5, update)
+    graph = new utilities.Graph(sketch, 0.05, 0.15, 0.9, 0.8, 0, 0.5, 1, 0.1)
+  }
+
+  p5.windowResized = () => {
+    graph.resize()
+    sketch.resize()
+  }
+
+  p5.mouseClicked = () => {
+    if (sketch) {
+      sketch.pause()
+    }
+  }
+
   p5.draw = () => {
-    p5.update()
+    sketch.update()
 
     p5.background('#ff7070')
 
@@ -40,10 +46,9 @@ export default (p5) => {
       graph.plotRoot(root)
     })
 
-    // p5.text('x', p5.width / 100, p5.height / 2)
-
     sketch.displayDictionary({
-      y: roots.map((root) => `(x - ${root.toFixed(2)})`).join('')
+      y: roots.map((root) => `(x - ${root.toFixed(2)})`).join(''),
+      roots: roots.map((root) => root.toFixed(2).toString()).join(', ')
     })
   }
 }

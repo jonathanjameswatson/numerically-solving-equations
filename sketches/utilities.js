@@ -1,17 +1,23 @@
 class Sketch {
-  constructor(p5) {
+  constructor(p5, update, paused = true) {
     this.p5 = p5
+    this.updateFunction = update
     this.canvas = p5.createCanvas(16, 9).elt
     this.resize()
 
-    this.paused = false
+    this.paused = paused
     this.time = 0
     this.lastTime = 0
 
     p5.loadFont('/robotomono.ttf', (font) => {
       p5.textFont(font)
+      p5.redraw()
     })
-    p5.textSize(p5.width / 50)
+
+    if (this.paused) {
+      update(this)
+      p5.noLoop()
+    }
   }
 
   passTime() {
@@ -23,11 +29,30 @@ class Sketch {
     this.lastTime = window.performance.now()
   }
 
+  update() {
+    if (!this.paused) {
+      this.updateFunction(this)
+    }
+  }
+
   resize() {
     this.p5.resizeCanvas(
       this.canvas.parentElement.offsetWidth,
       this.canvas.parentElement.offsetHeight
     )
+
+    this.p5.textSize(this.p5.width / 50)
+
+    this.updateFunction(this)
+  }
+
+  pause() {
+    this.paused = !this.paused
+    if (this.paused) {
+      this.p5.noLoop()
+    } else {
+      this.p5.loop()
+    }
   }
 
   displayDictionary(dictionary) {
@@ -35,40 +60,79 @@ class Sketch {
       this.p5.text(
         `${key} = ${value}`,
         this.p5.width / 100,
-        this.p5.width / 40 + (i * this.p5.width) / 20
+        this.p5.width / 40 + (i * this.p5.width) / 35
       )
     })
   }
 }
 
 class Graph {
-  constructor(sketch, x, y, length, height, xAxis, yAxis, xScale, yScale) {
+  constructor(sketch, x, y, width, height, xAxis, yAxis, xScale, yScale) {
     this.sketch = sketch
-    this.x = x * sketch.p5.width
-    this.y = y * sketch.p5.height
-    this.width = length * sketch.p5.width
-    this.height = height * sketch.p5.height
-    this.xAxis = this.y + yAxis * this.height
-    this.yAxis = this.x + xAxis * this.width
-    this.xScale = this.width / xScale
-    this.yScale = this.height / yScale
+
+    this.x = x
+    this.y = y
+    this.width = width
+    this.height = height
+    this.xAxis = xAxis
+    this.yAxis = yAxis
+    this.xScale = xScale
+    this.yScale = yScale
+
+    this.resize()
   }
 
-  plotAxes() {
-    this.sketch.p5.line(this.x, this.xAxis, this.x + this.width, this.xAxis)
-    this.sketch.p5.line(this.yAxis, this.y, this.yAxis, this.y + this.height)
+  resize() {
+    this.xPixels = this.x * this.sketch.p5.width
+    this.yPixels = this.y * this.sketch.p5.height
+
+    this.widthPixels = this.width * this.sketch.p5.width
+    this.heightPixels = this.height * this.sketch.p5.height
+
+    this.xAxisPixels = this.yPixels + this.yAxis * this.heightPixels
+    this.yAxisPixels = this.xPixels + this.xAxis * this.widthPixels
+
+    this.xScalePixels = this.widthPixels / this.xScale
+    this.yScalePixels = this.heightPixels / this.yScale
+  }
+
+  plotAxes(x = true, y = true) {
+    if (x) {
+      this.sketch.p5.line(
+        this.xPixels,
+        this.xAxisPixels,
+        this.xPixels + this.widthPixels,
+        this.xAxisPixels
+      )
+    }
+    if (y) {
+      this.sketch.p5.line(
+        this.yAxisPixels,
+        this.yPixels,
+        this.yAxisPixels,
+        this.yPixels + this.heightPixels
+      )
+    }
   }
 
   plotFunction(f) {
     this.sketch.p5.noFill()
     this.sketch.p5.beginShape()
 
-    for (let x = this.x; x < this.x + this.width; x += 1) {
-      const scaledX = (x - this.yAxis) / this.xScale
-      const scaledY = f(scaledX)
-      const y = this.xAxis - scaledY * this.yScale
-      if (y > this.y && y < this.y + this.height) {
-        this.sketch.p5.vertex(x, y)
+    for (
+      let xPixels = this.xPixels;
+      xPixels < this.xPixels + this.widthPixels;
+      xPixels += 1
+    ) {
+      const x = (xPixels - this.yAxisPixels) / this.xScalePixels
+      const y = f(x)
+      const yPixels = this.xAxisPixels - y * this.yScalePixels
+
+      if (
+        yPixels > this.yPixels &&
+        yPixels < this.yPixels + this.heightPixels
+      ) {
+        this.sketch.p5.vertex(xPixels, yPixels)
       }
     }
 
@@ -78,19 +142,18 @@ class Graph {
   plotRoot(root) {
     this.sketch.p5.noFill()
     this.sketch.p5.circle(
-      this.yAxis + root * this.xScale,
-      this.xAxis,
+      this.yAxisPixels + root * this.xScalePixels,
+      this.xAxisPixels,
       this.sketch.p5.width / 75
     )
+
     this.sketch.p5.fill('black')
     this.sketch.p5.text(
       root.toFixed(2),
-      this.yAxis + root * this.xScale,
-      this.xAxis + this.sketch.p5.width / 50
+      this.yAxisPixels + root * this.xScalePixels,
+      this.xAxisPixels + this.sketch.p5.width / 50
     )
   }
-
-  plotcIRCLE
 }
 
 export default {
