@@ -24,8 +24,9 @@ export default (p5) => {
   }
 
   p5.windowResized = () => {
-    graph.resize()
     sketch.resize()
+    graph.resize()
+    p5.redraw()
   }
 
   p5.mouseClicked = (event) => {
