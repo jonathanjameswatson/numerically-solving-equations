@@ -3,22 +3,6 @@ import markdownItPlugin from './markdownItPlugin.js'
 export default {
   mode: 'universal',
   /*
-   ** Headers of the page
-   */
-  head: {
-    title: process.env.npm_package_name || '',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content: process.env.npm_package_description || ''
-      }
-    ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
-  },
-  /*
    ** Customize the progress-bar color
    */
   loading: false,
@@ -81,6 +65,26 @@ export default {
       config.node = { fs: 'empty' }
     }
   },
-
-  pageTransition: 'default'
+  /*
+   ** Default transition
+   */
+  pageTransition: 'default',
+  /*
+   ** PWA configuration
+   */
+  pwa: {
+    meta: {
+      name: 'Numerically Solving Equations',
+      theme_color: '#f00',
+      ogHost:
+        'https://jonathanjameswatson.github.io/numerically-solving-equations',
+      twitterCard: 'summary'
+    },
+    manifest: {
+      name: 'Numerically Solving Equations',
+      short_name: 'Numerically Solving Equations',
+      theme_color: '#f00',
+      display: 'fullscreen'
+    }
+  }
 }
