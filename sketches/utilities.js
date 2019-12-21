@@ -44,12 +44,13 @@ class Sketch {
     this.p5.textSize(this.p5.width / 50)
   }
 
-  pause() {
-    this.paused = !this.paused
-    if (this.paused) {
-      this.p5.noLoop()
-    } else {
+  handleClick(target) {
+    if (target === this.canvas) {
+      this.paused = false
       this.p5.loop()
+    } else {
+      this.paused = true
+      this.p5.noLoop()
     }
   }
 

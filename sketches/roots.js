@@ -30,8 +30,8 @@ export default (p5) => {
   }
 
   p5.mouseClicked = (event) => {
-    if (event.target === sketch.canvas) {
-      sketch.pause()
+    if (event.target.className === 'p5Canvas') {
+      sketch.handleClick(event.target)
       return false
     }
   }
