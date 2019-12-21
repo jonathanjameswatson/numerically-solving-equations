@@ -39,7 +39,7 @@ export default (p5) => {
   p5.draw = () => {
     sketch.update()
 
-    p5.background('#ff7070')
+    sketch.background()
 
     graph.plotAxes()
     graph.plotFunction(getY)

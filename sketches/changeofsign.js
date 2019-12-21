@@ -1,79 +1,60 @@
+import utilities from './utilities.js'
+
 export default (p5) => {
-  let t = 0
-  let lastTime = 0
+  let sketch = null
+  let graph = null
 
-  let xLine
-
-  let canvas = null
+  let x
+  let y
+  let lineColour = 'black'
 
   const getY = (x) => x ** 3 - 0.5 * x ** 2 + x - 0.5
 
-  const passTime = () => {
-    t += Math.min(100, window.performance.now() - lastTime) / 2500
-    lastTime = window.performance.now()
-  }
+  const update = (s) => {
+    s.passTime()
 
-  const resize = () => {
-    p5.resizeCanvas(
-      canvas.parentElement.offsetWidth,
-      canvas.parentElement.offsetHeight
-    )
+    x = 0.5 + Math.cos(4 * s.time) / 8
+    y = getY(x)
+
+    if (y > 0) {
+      lineColour = 'red'
+    } else {
+      lineColour = 'blue'
+    }
   }
 
   p5.setup = () => {
-    canvas = p5.createCanvas(16, 9).elt
-    resize()
+    sketch = new utilities.Sketch(p5, update)
+    graph = new utilities.Graph(sketch, 0.05, 0.15, 0.9, 0.8, 0, 0.5, 1, 2)
   }
 
   p5.windowResized = () => {
-    resize()
+    sketch.resize()
+    graph.resize()
+    p5.redraw()
   }
 
-  p5.update = () => {
-    passTime()
-
-    xLine = 0.5 + Math.sin(4 * t) / 8
+  p5.mouseClicked = (event) => {
+    if (event.target === sketch.canvas) {
+      sketch.pause()
+      return false
+    }
   }
 
   p5.draw = () => {
-    p5.update()
+    sketch.update()
 
-    p5.background('#ff7070')
+    sketch.background()
 
-    p5.noFill()
-    p5.stroke('black')
-    p5.beginShape()
-    for (let x = 0; x < p5.width; x += 1) {
-      p5.vertex(x, p5.height / 2 - (getY(x / p5.width) * 100000) / p5.height)
-    }
-    p5.endShape()
+    graph.plotAxes()
+    graph.plotFunction(getY)
 
-    p5.line(0, p5.height / 2, p5.width, p5.height / 2)
+    graph.plotLineUpToFunction(getY, x, lineColour)
+    graph.plotRoot(0.5)
 
-    if (getY(xLine) > 0) {
-      p5.stroke('red')
-    } else {
-      p5.stroke('blue')
-    }
-
-    p5.line(
-      xLine * p5.width,
-      p5.height / 2,
-      xLine * p5.width,
-      p5.height / 2 - (getY(xLine) * 100000) / p5.height
-    )
-
-    p5.noStroke()
-
-    p5.textAlign(p5.LEFT, p5.BASELINE)
-    p5.noFill()
-    p5.circle(p5.width / 2, p5.height / 2, p5.width / 125)
-    p5.fill('black')
-
-    p5.text(
-      `x = ${xLine.toFixed(2)}, y = ${getY(xLine).toFixed(2)}`,
-      p5.width / 100,
-      p5.width / 40
-    )
+    sketch.displayDictionary({
+      x: x.toFixed(2),
+      y: y.toFixed(2)
+    })
   }
 }

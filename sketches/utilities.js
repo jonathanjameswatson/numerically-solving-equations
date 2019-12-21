@@ -42,8 +42,6 @@ class Sketch {
     )
 
     this.p5.textSize(this.p5.width / 50)
-
-    this.updateFunction(this)
   }
 
   pause() {
@@ -56,6 +54,9 @@ class Sketch {
   }
 
   displayDictionary(dictionary) {
+    this.p5.noStroke()
+    this.p5.fill('black')
+
     Object.entries(dictionary).forEach(([key, value], i) => {
       this.p5.text(
         `${key} = ${value}`,
@@ -63,6 +64,10 @@ class Sketch {
         this.p5.width / 40 + (i * this.p5.width) / 35
       )
     })
+  }
+
+  background() {
+    this.p5.background('#ff7070')
   }
 }
 
@@ -97,6 +102,7 @@ class Graph {
   }
 
   plotAxes(x = true, y = true) {
+    this.sketch.p5.stroke('black')
     if (x) {
       this.sketch.p5.line(
         this.xPixels,
@@ -116,7 +122,9 @@ class Graph {
   }
 
   plotFunction(f) {
+    this.sketch.p5.stroke('black')
     this.sketch.p5.noFill()
+
     this.sketch.p5.beginShape()
 
     for (
@@ -139,19 +147,35 @@ class Graph {
     this.sketch.p5.endShape()
   }
 
-  plotRoot(root) {
+  plotRoot(root, colour = 'black') {
+    this.sketch.p5.stroke(colour)
     this.sketch.p5.noFill()
+
     this.sketch.p5.circle(
       this.yAxisPixels + root * this.xScalePixels,
       this.xAxisPixels,
       this.sketch.p5.width / 75
     )
 
+    this.sketch.p5.noStroke()
     this.sketch.p5.fill('black')
+
     this.sketch.p5.text(
       root.toFixed(2),
       this.yAxisPixels + root * this.xScalePixels,
-      this.xAxisPixels + this.sketch.p5.width / 50
+      this.xAxisPixels + this.sketch.p5.width / 40
+    )
+  }
+
+  plotLineUpToFunction(f, x, colour = 'black') {
+    this.sketch.p5.stroke(colour)
+
+    const y = f(x)
+    this.sketch.p5.line(
+      this.yAxisPixels + x * this.xScalePixels,
+      this.xAxisPixels,
+      this.yAxisPixels + x * this.xScalePixels,
+      this.xAxisPixels - y * this.yScalePixels
     )
   }
 }
