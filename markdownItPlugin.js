@@ -3,7 +3,7 @@ const renderSketch = (sketch) => {
 }
 
 const renderIFrame = (link) => {
-  return `<div class="container-16-by-9"><iframe src="${link}"></iframe></div>`
+  return `<div class="container-16-by-9"><iframe src="${link}" scrolling="no"></iframe></div><p></p>`
 }
 
 const plugin = (md, opts) => {
