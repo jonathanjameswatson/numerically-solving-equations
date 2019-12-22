@@ -54,17 +54,23 @@ class Sketch {
     }
   }
 
-  displayDictionary(dictionary) {
+  displayList(list) {
     this.p5.noStroke()
     this.p5.fill('black')
 
-    Object.entries(dictionary).forEach(([key, value], i) => {
+    list.forEach((line, i) => {
       this.p5.text(
-        `${key} = ${value}`,
+        line,
         this.p5.width / 100,
         this.p5.width / 40 + (i * this.p5.width) / 35
       )
     })
+  }
+
+  displayDictionary(dictionary) {
+    this.displayList(
+      Object.entries(dictionary).map(([key, value]) => `${key} = ${value}`)
+    )
   }
 
   background() {
@@ -181,7 +187,66 @@ class Graph {
   }
 }
 
+class Animation {
+  constructor(sketch, keyframes) {
+    this.sketch = sketch
+    this.keyframes = keyframes
+    this.variables = { ...this.keyframes[0].variables }
+
+    this.keyframe = { ...keyframes[0] }
+    this.keyframeIndex = 0
+
+    this.frameTime = 0
+    this.lastTime = 0
+  }
+
+  getNextKeyframeIndex() {
+    if (this.keyframeIndex === this.keyframes.length - 1) {
+      return 0
+    } else {
+      return this.keyframeIndex + 1
+    }
+  }
+
+  update() {
+    if (!this.sketch.paused) {
+      this.frameTime += this.sketch.time - this.lastTime
+
+      if (this.frameTime > this.keyframe.wait + this.keyframe.transition) {
+        this.keyframeIndex = this.getNextKeyframeIndex()
+
+        this.keyframe = { ...this.keyframes[this.keyframeIndex] }
+        this.variables = { ...this.keyframe.variables } // Ok so basically objects aren't copied
+
+        this.frameTime = 0
+      } else if (this.frameTime > this.keyframe.wait) {
+        const progress =
+          (this.frameTime - this.keyframe.wait) / this.keyframe.transition
+        const progressEased = progress ** 3
+
+        Object.entries(this.keyframe.variables).forEach(([key, value]) => {
+          const nextKeyframe = this.keyframes[this.getNextKeyframeIndex()]
+          this.variables[key] =
+            value + (nextKeyframe.variables[key] - value) * progressEased
+        })
+      }
+    }
+
+    this.lastTime = this.sketch.time
+  }
+}
+
+const mapObjectValues = (object, f) =>
+  Object.fromEntries(
+    Object.entries(object).map(([key, value]) => [key, f(value)])
+  )
+
+const roundToDp = (number, dp) => +(Math.round(number + `e+${dp}`) + `e-${dp}`)
+
 export default {
   Sketch,
-  Graph
+  Graph,
+  Animation,
+  mapObjectValues,
+  roundToDp
 }
