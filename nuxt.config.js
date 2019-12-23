@@ -89,7 +89,7 @@ export default {
   pwa: {
     meta: {
       name: 'Numerically Solving Equations',
-      theme_color: '#f00',
+      theme_color: '#FF7070',
       ogHost:
         'https://jonathanjameswatson.github.io/numerically-solving-equations',
       twitterCard: 'summary'
@@ -97,7 +97,7 @@ export default {
     manifest: {
       name: 'Numerically Solving Equations',
       short_name: 'Numerically Solving Equations',
-      theme_color: '#f00',
+      theme_color: '#FF7070',
       display: 'fullscreen'
     }
   }
