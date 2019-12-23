@@ -31,7 +31,9 @@ export default {
     '@nuxtjs/markdownit',
     '~/modules/routes.js'
   ],
-
+  /*
+   ** Markdownit configuration
+   */
   markdownit: {
     typographer: true,
     linkify: true,
@@ -64,6 +66,18 @@ export default {
     extend(config, ctx) {
       config.node = { fs: 'empty' }
     }
+  },
+  /*
+   ** Generate configuration
+   */
+  generate: {
+    subFolders: false
+  },
+  /*
+   ** Router configuration
+   */
+  router: {
+    base: '/numerically-solving-equations/'
   },
   /*
    ** Default transition
