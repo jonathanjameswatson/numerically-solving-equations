@@ -1,0 +1,80 @@
+@import "bulma/sass/utilities/initial-variables";
+
+$primary: $red;
+
+@import "bulma/sass/utilities/_all";
+
+html {
+  scroll-behavior: smooth;
+}
+
+.katex-html {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.table-of-contents ol {
+  margin-bottom: 1em;
+}
+
+.default-leave-active {
+  transition: all .2s linear;
+}
+
+.default-enter-active {
+  transition: all .25s ease-out;
+}
+
+.default-leave-active {
+  opacity: 0;
+  transform: translateY(20rem);
+}
+
+.default-enter {
+  opacity: 0;
+  transform: translateY(-20rem);
+}
+
+.sidebar .button-stick {
+  position: sticky;
+  margin-top: $gap;
+  top: $gap;
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.mobile-button {
+  @include tablet {
+    display: none !important;
+  }
+}
+
+.container-16-by-9 {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding-bottom: 56.25%;
+
+  > iframe, canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
+}
+
+canvas {
+  border-radius: $radius-large;
+}
+
+@import "bulma/sass/base/_all.sass";
+@import "bulma/sass/components/menu.sass";
+@import "bulma/sass/components/navbar.sass";
+@import "bulma/sass/elements/button.sass";
+@import "bulma/sass/elements/container.sass";
+@import "bulma/sass/elements/content.sass";
+@import "bulma/sass/grid/columns.sass";
+@import "bulma/sass/layout/section.sass";
