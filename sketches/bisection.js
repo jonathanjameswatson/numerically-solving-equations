@@ -16,7 +16,8 @@ const bisection = (f, a, b, accuracy) => {
     const fLastRow = utilities.mapObjectValues(lastRow, (number) => f(number))
 
     if (
-      utilities.roundToDp(lastRow.a, 1) === utilities.roundToDp(lastRow.b, 1)
+      utilities.roundToDp(lastRow.a, accuracy) ===
+      utilities.roundToDp(lastRow.b, accuracy)
     ) {
       break
     }
