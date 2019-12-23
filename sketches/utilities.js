@@ -9,9 +9,11 @@ class Sketch {
     this.time = 0
     this.lastTime = 0
 
-    p5.loadFont('/robotomono.ttf', (font) => {
-      p5.textFont(font)
-      p5.redraw()
+    p5.loadFont('/robotomono.ttf', this.redrawFont, () => {
+      p5.loadFont(
+        '/numerically-solving-equations/robotomono.ttf',
+        this.redrawFont
+      )
     })
 
     p5.disableFriendlyErrors = true
@@ -20,6 +22,11 @@ class Sketch {
       update(this)
       p5.noLoop()
     }
+  }
+
+  redrawFont(font) {
+    this.p5.textFont(font)
+    this.p5.redraw()
   }
 
   passTime() {
