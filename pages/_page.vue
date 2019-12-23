@@ -27,7 +27,7 @@ export default {
       const Content = await import(`~/assets/contents/${page}.md`)
       const linkFixedContent = Content.default.replace(
         anchorRegExp,
-        (match) => `${page}/${match}`
+        (match) => `${page}${match}`
       )
       return { content: linkFixedContent }
     } catch (err) {
