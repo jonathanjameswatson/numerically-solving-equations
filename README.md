@@ -1,22 +1,49 @@
-# numerically-solving-equations
+# Numerically Solving Equations
 
-> A website about numerically solving equations
+![License](https://img.shields.io/github/license/jonathanjameswatson/numerically-solving-equations)
 
-## Build Setup
+Numerically Solving Equations is a website for explaining and visualising basic numerical methods for solving equations.
 
-``` bash
-# install dependencies
-$ yarn install
+![GIF demo](demo.gif)
 
-# serve with hot reload at localhost:3000
-$ yarn dev
+## Deployment
 
-# build for production and launch server
-$ yarn build
-$ yarn start
+1. `git clone https://github.com/jonathanjameswatson/numerically-solving-equations.git`
+2. `cd numerically-solving-equations`
+3. `yarn install`
+4. `yarn run generate`
+5. Deploy the dist folder
 
-# generate static project
-$ yarn generate
-```
+## Features
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+* Sketches using p5.js
+* Spreadsheets using Google Sheets
+* Mathematical typesetting using KaTeX
+
+## Pages
+
+* Absolute and relative errors
+* Rounding and chopping
+* Arithmetic using approximate values
+* Roots of equations and graphs
+* Bisection method
+* False position
+
+## To do
+
+- [ ] Add fixed point iteration page
+- [ ] Add Newton-Raphson method page
+- [ ] Add Secant method page
+- [ ] Add calculators to solve equations using this website's methods.
+
+## Website
+
+[Visit the website here](https://jonathanjameswatson.github.io/numerically-solving-equations/)
+
+## Contributing
+
+All pull requests are welcome. Please open issues for any major changes.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
