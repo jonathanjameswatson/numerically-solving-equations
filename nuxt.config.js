@@ -71,7 +71,8 @@ export default {
    ** Generate configuration
    */
   generate: {
-    subFolders: false
+    subFolders: false,
+    fallback: true
   },
   /*
    ** Router configuration
