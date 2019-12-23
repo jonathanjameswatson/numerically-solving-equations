@@ -1,9 +1,25 @@
 <template>
-  <div v-html="content" class="content" />
+  <div>
+    <div v-html="content" class="content" />
+    <b-button
+      v-if="pageLong"
+      @click="scrollToTop()"
+      class="mobile-button"
+      icon-left="arrow-up"
+      type="is-link"
+    >
+      Back to top
+    </b-button>
+  </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      pageLong: false
+    }
+  },
   async asyncData({ params, error }) {
     const page = params.page || 'index'
     try {
@@ -23,6 +39,13 @@ export default {
       const p = await import(`~/sketches/${sketch.getAttribute('sketch')}.js`)
       new P5(p.default, sketch) // eslint-disable-line
     })
+
+    this.pageLong = document.body.clientHeight > window.innerHeight
+  },
+  methods: {
+    scrollToTop() {
+      window.scrollTo(0, 0)
+    }
   }
 }
 </script>

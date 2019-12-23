@@ -8,6 +8,7 @@
           </h1>
         </b-navbar-item>
       </template>
+
       <!--<template slot="start">
         <b-navbar-item tag="nuxt-link" to="/">
           Home
@@ -54,14 +55,6 @@
 
           <div class="column is-8 is-offset-1">
             <nuxt />
-            <b-button
-              @click="scrollToTop()"
-              class="mobile-button"
-              icon-left="arrow-up"
-              type="is-link"
-            >
-              Back to top
-            </b-button>
           </div>
         </div>
       </section>
