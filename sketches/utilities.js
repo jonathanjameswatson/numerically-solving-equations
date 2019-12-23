@@ -232,7 +232,7 @@ class Animation {
         this.keyframeIndex = this.getNextKeyframeIndex()
 
         this.keyframe = { ...this.keyframes[this.keyframeIndex] }
-        this.variables = { ...this.keyframe.variables } // Ok so basically objects aren't copied
+        this.variables = { ...this.keyframe.variables }
 
         this.frameTime = 0
       } else if (this.frameTime > this.keyframe.wait) {
