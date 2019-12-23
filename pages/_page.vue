@@ -14,6 +14,7 @@
 </template>
 
 <script>
+const anchorRegExp = RegExp('(?!<a href=\\"e)#.+?(?=\\">)', 'g')
 export default {
   data() {
     return {
@@ -24,7 +25,11 @@ export default {
     const page = params.page || 'index'
     try {
       const Content = await import(`~/assets/contents/${page}.md`)
-      return { content: Content.default }
+      const linkFixedContent = Content.default.replace(
+        anchorRegExp,
+        (match) => `${page}/${match}`
+      )
+      return { content: linkFixedContent }
     } catch (err) {
       error({
         statusCode: 404,
