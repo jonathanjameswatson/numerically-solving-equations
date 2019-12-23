@@ -14,6 +14,8 @@ class Sketch {
       p5.redraw()
     })
 
+    p5.disableFriendlyErrors = true
+
     if (this.paused) {
       update(this)
       p5.noLoop()
@@ -183,6 +185,20 @@ class Graph {
       this.xAxisPixels,
       this.yAxisPixels + x * this.xScalePixels,
       this.xAxisPixels - y * this.yScalePixels
+    )
+  }
+
+  plotLinearInterpolation(f, a, b, colour = 'black') {
+    this.sketch.p5.stroke(colour)
+
+    const fA = f(a)
+    const fB = f(b)
+
+    this.sketch.p5.line(
+      this.yAxisPixels + a * this.xScalePixels,
+      this.xAxisPixels - fA * this.yScalePixels,
+      this.yAxisPixels + b * this.xScalePixels,
+      this.xAxisPixels - fB * this.yScalePixels
     )
   }
 }
