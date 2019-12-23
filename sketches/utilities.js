@@ -10,11 +10,11 @@ class Sketch {
     this.lastTime = 0
 
     try {
-      p5.loadFont('/robotomono.ttf', this.redrawFont())
+      p5.loadFont('/robotomono.ttf', this.redrawFont)
     } catch (error) {
       p5.loadFont(
         '/numerically-solving-equations/robotomono.ttf',
-        this.redrawFont()
+        this.redrawFont
       )
     }
 
