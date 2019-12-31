@@ -1,26 +1,10 @@
 <template>
-  <div>
-    <div v-html="content" class="content" />
-    <b-button
-      v-if="pageLong"
-      @click="scrollToTop()"
-      class="mobile-button"
-      icon-left="arrow-up"
-      type="is-link"
-    >
-      Back to top
-    </b-button>
-  </div>
+  <div v-html="content" class="content" />
 </template>
 
 <script>
 const anchorRegExp = RegExp('(?!<a href=\\"e)#.+?(?=\\">)', 'g')
 export default {
-  data() {
-    return {
-      pageLong: false
-    }
-  },
   async asyncData({ params, error }) {
     const page = params.page || 'index'
     try {

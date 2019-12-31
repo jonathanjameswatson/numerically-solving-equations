@@ -142,7 +142,7 @@ class Graph {
       xPixels += 1
     ) {
       const x = (xPixels - this.yAxisPixels) / this.xScalePixels
-      const y = f(x)
+      const y = f({ x })
       const yPixels = this.xAxisPixels - y * this.yScalePixels
 
       if (
@@ -179,7 +179,7 @@ class Graph {
   plotLineUpToFunction(f, x, colour = 'black') {
     this.sketch.p5.stroke(colour)
 
-    const y = f(x)
+    const y = f({ x })
     this.sketch.p5.line(
       this.yAxisPixels + x * this.xScalePixels,
       this.xAxisPixels,
@@ -191,8 +191,8 @@ class Graph {
   plotLinearInterpolation(f, a, b, colour = 'black') {
     this.sketch.p5.stroke(colour)
 
-    const fA = f(a)
-    const fB = f(b)
+    const fA = f({ x: a })
+    const fB = f({ x: b })
 
     this.sketch.p5.line(
       this.yAxisPixels + a * this.xScalePixels,
@@ -259,10 +259,108 @@ const mapObjectValues = (object, f) =>
 
 const roundToDp = (number, dp) => +(Math.round(number + `e+${dp}`) + `e-${dp}`)
 
+const bisection = (f, a, b, accuracy) => {
+  const table = [
+    {
+      a,
+      b,
+      c: null
+    }
+  ]
+
+  while (true) {
+    const lastRow = table[table.length - 1]
+    lastRow.c = (lastRow.a + lastRow.b) / 2
+
+    const fLastRow = mapObjectValues(lastRow, (number) => f({ x: number }))
+
+    if (roundToDp(lastRow.a, accuracy) === roundToDp(lastRow.b, accuracy)) {
+      break
+    }
+
+    const { a, b, c } = mapObjectValues(fLastRow, (number) => Math.sign(number))
+
+    if (c === a) {
+      table.push({
+        a: lastRow.c,
+        b: lastRow.b,
+        c: null
+      })
+    } else if (c === b) {
+      table.push({
+        a: lastRow.a,
+        b: lastRow.c,
+        c: null
+      })
+    } else {
+      break
+    }
+  }
+
+  return table
+}
+
+const falsePosition = (f, a, b, accuracy) => {
+  const table = [
+    {
+      a,
+      b,
+      c: 0
+    }
+  ]
+
+  while (true) {
+    const lastRow = table[table.length - 1]
+
+    const fLastRow = mapObjectValues(lastRow, (x) => f({ x }))
+
+    lastRow.c =
+      (lastRow.a * fLastRow.b - lastRow.b * fLastRow.a) /
+      (fLastRow.b - fLastRow.a)
+    fLastRow.c = f({ x: lastRow.c })
+
+    if (Math.abs(fLastRow.c) < 10 ** -(accuracy + 1)) {
+      break
+    }
+
+    const { a, b, c } = mapObjectValues(fLastRow, (number) => Math.sign(number))
+
+    if (c === a) {
+      table.push({
+        a: lastRow.c,
+        b: lastRow.b,
+        c: 0
+      })
+    } else if (c === b) {
+      table.push({
+        a: lastRow.a,
+        b: lastRow.c,
+        c: 0
+      })
+    } else {
+      break
+    }
+  }
+
+  return table
+}
+
 export default {
   Sketch,
   Graph,
   Animation,
   mapObjectValues,
-  roundToDp
+  roundToDp,
+  calculators: {
+    bisection: {
+      name: 'Bisection method'
+    },
+    falsePosition: {
+      name: 'False position'
+    }
+  },
+  methods: {
+    bisection,
+    falsePosition
+  }
 }

@@ -1,10 +1,10 @@
-import utilities from './utilities.js'
+import utilities from '../utilities'
 
 export default (p5) => {
   let sketch = null
   let graph = null
 
-  const getY = (x) => x ** 6 + 4 * x - 3
+  const getY = ({ x }) => x ** 6 + 4 * x - 3
 
   const update = () => {}
 

@@ -1,4 +1,4 @@
-import utilities from './utilities.js'
+import utilities from '../utilities'
 
 export default (p5) => {
   let sketch = null
@@ -6,7 +6,7 @@ export default (p5) => {
 
   const roots = new Array(3)
 
-  const getY = (x) => roots.map((root) => x - root).reduce((a, b) => a * b)
+  const getY = ({ x }) => roots.map((root) => x - root).reduce((a, b) => a * b)
 
   const update = (s) => {
     s.passTime()

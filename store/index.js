@@ -1,21 +1,26 @@
-import contentsGenerator from '~/contents.js'
+import pagesGenerator from '~/pages'
+import utilities from '~/utilities'
 
 const titleRegex = /h1.*?>(.*?)</m
 
 export const state = () => ({
-  contents: null
+  pages: null,
+  calculators: null
 })
 
 export const mutations = {
-  setContents(state, contents) {
-    state.contents = contents
+  setPages(state, pages) {
+    state.pages = pages
+  },
+  setCalculators(state, calculators) {
+    state.calculators = calculators
   }
 }
 
 export const actions = {
   async nuxtServerInit({ commit }) {
-    const pageNames = await contentsGenerator()
-    const contents = await Promise.all(
+    const pageNames = await pagesGenerator()
+    const pages = await Promise.all(
       pageNames
         .filter((pageName) => pageName !== 'index')
         .map(async (name) => {
@@ -24,6 +29,10 @@ export const actions = {
           return { name, title }
         })
     )
-    await commit('setContents', contents)
+
+    const calculators = utilities.calculators
+
+    await commit('setPages', pages, calculators)
+    await commit('setCalculators', calculators)
   }
 }

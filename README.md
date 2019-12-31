@@ -29,12 +29,16 @@ Numerically Solving Equations is a website for explaining and visualising basic 
 * Bisection method
 * False position
 
+## Calculators
+
+* Bisection method
+* False position
+
 ## To do
 
 - [ ] Add fixed point iteration page
 - [ ] Add Newton-Raphson method page
 - [ ] Add Secant method page
-- [ ] Add calculators to solve equations using this website's methods.
 
 ## Website
 

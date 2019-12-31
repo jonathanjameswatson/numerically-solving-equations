@@ -1,4 +1,4 @@
-import utilities from './utilities.js'
+import utilities from '../utilities'
 
 export default (p5) => {
   let sketch = null
@@ -8,13 +8,13 @@ export default (p5) => {
   let y
   let lineColour = 'black'
 
-  const getY = (x) => x ** 3 - 0.5 * x ** 2 + x - 0.5
+  const getY = ({ x }) => x ** 3 - 0.5 * x ** 2 + x - 0.5
 
   const update = (s) => {
     s.passTime()
 
     x = 0.5 + Math.cos(4 * s.time) / 8
-    y = getY(x)
+    y = getY({ x })
 
     if (y > 0) {
       lineColour = 'red'
