@@ -10,6 +10,7 @@ export default (p5) => {
 
   const update = (s) => {
     s.passTime()
+    p5.noiseSeed(0)
 
     for (let i = 0; i < roots.length; i += 1) {
       roots[i] = p5.noise(s.time + 1000 * i) / roots.length + i / roots.length
