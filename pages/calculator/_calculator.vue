@@ -51,7 +51,6 @@ export default {
   asyncData({ params, error }) {
     const calculatorKey = params.calculator
     const calculator = utilities.calculators[calculatorKey]
-    const method = utilities.methods[calculatorKey]
 
     if (calculator === undefined) {
       error({
@@ -65,7 +64,7 @@ export default {
       title: calculator.name,
       parameters: calculator.parameters,
       columns: calculator.columns,
-      method,
+      calculatorKey,
       f: calculator.function,
       lastF: calculator.function,
       fTex: parse(`y == ${calculator.function}`).toTex(),
@@ -75,7 +74,7 @@ export default {
   methods: {
     solve() {
       const { evaluate } = compile(this.lastF)
-      const table = this.method(
+      const table = utilities.methods[this.calculatorKey](
         evaluate,
         ...this.parameters.map((parameter) => parameter.value)
       )
