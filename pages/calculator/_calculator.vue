@@ -33,24 +33,6 @@ import { renderToString } from 'katex'
 import utilities from '~/utilities'
 
 export default {
-  data() {
-    const calculatorKey = this.$route.params.calculator
-    const calculator = utilities.calculators[calculatorKey]
-    const method = utilities.methods[calculatorKey]
-
-    return {
-      title: calculator.name,
-      calculator,
-      method,
-      f: 'x^2',
-      lastF: 'x^2',
-      fTex: 'y = x^2',
-      a: 0,
-      b: 1,
-      accuracy: 1,
-      table: ''
-    }
-  },
   computed: {
     fKatex() {
       return renderToString(this.fTex, {
@@ -64,6 +46,32 @@ export default {
         this.fTex = parse(`y == ${this.f}`).toTex()
         this.lastF = this.f
       } catch {}
+    }
+  },
+  asyncData({ params, error }) {
+    const calculatorKey = params.calculator
+    const calculator = utilities.calculators[calculatorKey]
+    const method = utilities.methods[calculatorKey]
+
+    if (calculator === undefined) {
+      error({
+        statusCode: 404,
+        message: 'This page could not be found.'
+      })
+      return false
+    }
+
+    return {
+      title: calculator.name,
+      calculator,
+      method,
+      f: 'x^2',
+      lastF: 'x^2',
+      fTex: 'y = x^2',
+      a: 0,
+      b: 1,
+      accuracy: 1,
+      table: ''
     }
   },
   methods: {
@@ -87,8 +95,6 @@ export default {
       this.table = renderToString(array, {
         displayMode: true
       })
-
-      /*  */
     }
   }
 }
