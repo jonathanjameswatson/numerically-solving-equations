@@ -360,14 +360,17 @@ export default {
       parameters: [
         {
           name: 'a',
+          type: 'Float',
           value: 0
         },
         {
           name: 'b',
+          type: 'Float',
           value: 1
         },
         {
           name: 'Accuracy',
+          type: 'Integer',
           value: 1
         }
       ],
@@ -379,14 +382,17 @@ export default {
       parameters: [
         {
           name: 'a',
+          type: 'Float',
           value: 0
         },
         {
           name: 'b',
+          type: 'Float',
           value: 1
         },
         {
           name: 'Accuracy',
+          type: 'Int',
           value: 2
         }
       ],

@@ -13,7 +13,11 @@
       :key="index"
       :label="parameter.name"
     >
-      <b-numberinput :controls="false" v-model="parameter.value" />
+      <b-numberinput
+        :controls="false"
+        :step="parameter.type === 'Integer' ? 1 : 'any'"
+        v-model="parameter.value"
+      />
     </b-field>
 
     <b-button @click="solve" type="is-primary">Solve</b-button>
