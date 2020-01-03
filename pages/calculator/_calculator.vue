@@ -8,16 +8,12 @@
 
     <div v-html="fKatex"></div>
 
-    <b-field label="a">
-      <b-numberinput :controls="false" v-model="a" />
-    </b-field>
-
-    <b-field label="b">
-      <b-numberinput :controls="false" v-model="b" />
-    </b-field>
-
-    <b-field label="Accuracy">
-      <b-numberinput :controls="false" v-model="accuracy" />
+    <b-field
+      v-for="(parameter, index) in parameters"
+      :key="index"
+      :label="parameter.name"
+    >
+      <b-numberinput :controls="false" v-model="parameter.value" />
     </b-field>
 
     <b-button @click="solve" type="is-primary">Solve</b-button>
@@ -63,21 +59,22 @@ export default {
 
     return {
       title: calculator.name,
-      calculator,
+      parameters: calculator.parameters,
+      columns: calculator.columns,
       method,
-      f: 'x^2',
-      lastF: 'x^2',
-      fTex: 'y = x^2',
-      a: 0,
-      b: 1,
-      accuracy: 1,
+      f: calculator.function,
+      lastF: calculator.function,
+      fTex: parse(`y == ${calculator.function}`).toTex(),
       table: ''
     }
   },
   methods: {
     solve() {
       const { evaluate } = compile(this.lastF)
-      const table = this.method(evaluate, this.a, this.b, this.accuracy)
+      const table = this.method(
+        evaluate,
+        ...this.parameters.map((parameter) => parameter.value)
+      )
 
       const makeRows = (row) =>
         `${Object.values(row)
@@ -88,7 +85,7 @@ export default {
       \\begin{array}{|${Array(Object.values(table[0]).length * 2)
         .fill('c|')
         .join('')}} \\hline
-      a & f(a) & b & f(b) & c & f(c) \\\\ \\hline
+      ${this.columns.join(' & ')} \\\\ \\hline
       ${table.map(makeRows).join(' ')}
       \\end{array}`
 

@@ -355,10 +355,42 @@ export default {
   roundToDp,
   calculators: {
     bisection: {
-      name: 'Bisection method'
+      name: 'Bisection method',
+      function: 'e^x - 4x',
+      parameters: [
+        {
+          name: 'a',
+          value: 0
+        },
+        {
+          name: 'b',
+          value: 1
+        },
+        {
+          name: 'Accuracy',
+          value: 1
+        }
+      ],
+      columns: ['a', 'f(a)', 'b', 'f(b)', 'c', 'f(c)']
     },
     falsePosition: {
-      name: 'False position'
+      name: 'False position',
+      function: '(x + 1/4)! - 1',
+      parameters: [
+        {
+          name: 'a',
+          value: 0
+        },
+        {
+          name: 'b',
+          value: 1
+        },
+        {
+          name: 'Accuracy',
+          value: 2
+        }
+      ],
+      columns: ['a', 'f(a)', 'b', 'f(b)', 'c', 'f(c)']
     }
   },
   methods: {
