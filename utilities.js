@@ -259,6 +259,38 @@ const mapObjectValues = (object, f) =>
 
 const roundToDp = (number, dp) => +(Math.round(number + `e+${dp}`) + `e-${dp}`)
 
+const straddle = (table, f) => {
+  const lastRow = table[table.length - 1]
+  const { a, b, c } = mapObjectValues(lastRow, (x) => Math.sign(f({ x })))
+
+  if (c === a) {
+    table.push({
+      a: lastRow.c,
+      b: lastRow.b,
+      c: 0
+    })
+  } else if (c === b) {
+    table.push({
+      a: lastRow.a,
+      b: lastRow.c,
+      c: 0
+    })
+  } else {
+    return true
+  }
+}
+
+const sameAccuracy = (table, accuracy, key) => {
+  if (table.length < 2) {
+    return false
+  }
+
+  return (
+    roundToDp(table[table.length - 1][key], accuracy) ===
+    roundToDp(table[table.length - 2][key], accuracy)
+  )
+}
+
 const bisection = (f, a, b, accuracy) => {
   const table = [
     {
@@ -272,27 +304,11 @@ const bisection = (f, a, b, accuracy) => {
     const lastRow = table[table.length - 1]
     lastRow.c = (lastRow.a + lastRow.b) / 2
 
-    const fLastRow = mapObjectValues(lastRow, (number) => f({ x: number }))
-
-    if (roundToDp(lastRow.a, accuracy) === roundToDp(lastRow.b, accuracy)) {
+    if (sameAccuracy(table, accuracy, 'c')) {
       break
     }
 
-    const { a, b, c } = mapObjectValues(fLastRow, (number) => Math.sign(number))
-
-    if (c === a) {
-      table.push({
-        a: lastRow.c,
-        b: lastRow.b,
-        c: null
-      })
-    } else if (c === b) {
-      table.push({
-        a: lastRow.a,
-        b: lastRow.c,
-        c: null
-      })
-    } else {
+    if (straddle(table, f)) {
       break
     }
   }
@@ -319,25 +335,11 @@ const falsePosition = (f, a, b, accuracy) => {
       (fLastRow.b - fLastRow.a)
     fLastRow.c = f({ x: lastRow.c })
 
-    if (Math.abs(fLastRow.c) < 10 ** -(accuracy + 1)) {
+    if (sameAccuracy(table, accuracy, 'c')) {
       break
     }
 
-    const { a, b, c } = mapObjectValues(fLastRow, (number) => Math.sign(number))
-
-    if (c === a) {
-      table.push({
-        a: lastRow.c,
-        b: lastRow.b,
-        c: 0
-      })
-    } else if (c === b) {
-      table.push({
-        a: lastRow.a,
-        b: lastRow.c,
-        c: 0
-      })
-    } else {
+    if (straddle(table, f)) {
       break
     }
   }

@@ -16,12 +16,13 @@ export default (p5) => {
     graph = new utilities.Graph(sketch, 0.05, 0.15, 0.9, 0.8, 0, 0.5, 1, 10)
 
     const table = utilities.methods.bisection(getY, 0, 1, 1)
+
     const keyframes = table.map((row) => {
-      const { a, b } = row
+      const { a, b, c } = row
       return {
-        variables: { a, b },
-        transition: 1,
-        wait: 0.1
+        variables: { a, b, c },
+        transition: 0.5,
+        wait: 0.2
       }
     })
     animation = new utilities.Animation(sketch, keyframes)
@@ -49,10 +50,13 @@ export default (p5) => {
     graph.plotAxes()
     graph.plotFunction(getY)
 
-    const { a, b } = animation.variables
+    const { a, b, c } = animation.variables
     graph.plotLineUpToFunction(getY, a, 'blue')
     graph.plotLineUpToFunction(getY, b, 'red')
 
-    sketch.displayList([`${a.toFixed(5)} < x < ${b.toFixed(5)}`])
+    sketch.displayList([
+      `${a.toFixed(5)} < x < ${b.toFixed(5)}`,
+      `c = ${c.toFixed(5)}`
+    ])
   }
 }
