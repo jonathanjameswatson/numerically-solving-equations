@@ -5,6 +5,9 @@
 <script>
 const anchorRegExp = RegExp('(?!<a href=\\"e)#.+?(?=\\">)', 'g')
 export default {
+  data() {
+    return { p5Instances: [] }
+  },
   async asyncData({ params, error }) {
     const page = params.page || 'index'
     try {
@@ -26,10 +29,15 @@ export default {
     const sketches = document.getElementsByClassName('sketch')
     Array.from(sketches).forEach(async (sketch) => {
       const p = await import(`~/sketches/${sketch.getAttribute('sketch')}.js`)
-      new P5(p.default, sketch) // eslint-disable-line
+      this.p5Instances.push(new P5(p.default, sketch))
     })
 
     this.pageLong = document.body.clientHeight > window.innerHeight
+  },
+  beforeDestroy() {
+    this.p5Instances.forEach((instance) => {
+      instance.remove()
+    })
   },
   methods: {
     scrollToTop() {
