@@ -3,6 +3,7 @@ class Sketch {
     this.p5 = p5
     this.updateFunction = update
     this.canvas = p5.createCanvas(16, 9).elt
+    this.canvas.classList.add('has-ratio')
     this.resize()
 
     this.paused = paused

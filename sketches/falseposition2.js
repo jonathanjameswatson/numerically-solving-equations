@@ -35,7 +35,7 @@ export default (p5) => {
   }
 
   p5.mouseClicked = (event) => {
-    if (event.target.className === 'p5Canvas') {
+    if (event.target.classList.contains('p5Canvas')) {
       sketch.handleClick(event.target)
       return false
     }

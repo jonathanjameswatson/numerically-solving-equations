@@ -9,8 +9,13 @@ html {
 }
 
 .katex-html {
+  overflow: visible;
+}
+
+.katex-display {
   overflow-x: auto;
   overflow-y: hidden;
+  padding: 1px 0;
 }
 
 .table-of-contents ol {
@@ -39,35 +44,14 @@ html {
   position: sticky;
   margin-top: $gap;
   top: $gap;
-
-  @include mobile {
-    display: none;
-  }
-}
-
-.mobile-button {
-  @include tablet {
-    display: none !important;
-  }
-}
-
-.container-16-by-9 {
-  position: relative;
-  width: 100%;
-  height: auto;
-  padding-bottom: 56.25%;
-
-  > iframe, canvas {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-  }
 }
 
 canvas {
   border-radius: $radius-large;
+}
+
+input[type="number"] {
+  appearance: textfield;
 }
 
 @import "bulma/sass/base/_all.sass";
@@ -76,6 +60,7 @@ canvas {
 @import "bulma/sass/elements/button.sass";
 @import "bulma/sass/elements/container.sass";
 @import "bulma/sass/elements/content.sass";
+@import "bulma/sass/elements/image.sass";
 @import "bulma/sass/elements/title.sass";
 @import "bulma/sass/form/_all.sass";
 @import "bulma/sass/grid/columns.sass";

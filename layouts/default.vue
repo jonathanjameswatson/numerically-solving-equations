@@ -3,8 +3,11 @@
     <b-navbar type="is-primary" wrapper-class="container">
       <template slot="brand">
         <b-navbar-item tag="nuxt-link" to="/">
-          <h1 class="title has-text-light is-6">
-            Numerically Solving Equations
+          <figure class="image is-16x16">
+            <img src="~assets/icon.png" alt="Numerically Solving Equations" />
+          </figure>
+          <h1 class="title has-text-light is-6" aria-hidden="true">
+            umerically Solving Equations
           </h1>
         </b-navbar-item>
       </template>
@@ -22,7 +25,7 @@
     <div class="main-content container">
       <section class="section">
         <div class="columns">
-          <aside class="column is-2 sidebar">
+          <aside class="column is-3-desktop is-2-widescreen sidebar">
             <b-menu>
               <b-menu-list aria-role="menu" label="Pages">
                 <b-menu-item
@@ -49,25 +52,28 @@
             </b-menu>
             <b-button
               @click="scrollToTop()"
-              class="button-stick"
+              class="button-stick is-hidden-mobile"
               icon-left="arrow-up"
               type="is-primary"
               outlined
             >
               Back to top
             </b-button>
+            <hr class="is-hidden-tablet" />
           </aside>
 
-          <div class="column is-8 is-offset-1">
+          <div class="column is-8-widescreen is-offset-1-widescreen is-9">
             <nuxt />
-            <b-button
-              @click="scrollToTop()"
-              class="mobile-button"
-              icon-left="arrow-up"
-              type="is-link"
-            >
-              Back to top
-            </b-button>
+            <div class="is-hidden-tablet">
+              <hr />
+              <b-button
+                @click="scrollToTop()"
+                icon-left="arrow-up"
+                type="is-link"
+              >
+                Back to top
+              </b-button>
+            </div>
           </div>
         </div>
       </section>
@@ -80,12 +86,8 @@ export default {
   data() {
     return {
       pages: this.$store.state.pages,
-      calculators: this.$store.state.calculators,
-      pageLong: false
+      calculators: this.$store.state.calculators
     }
-  },
-  mounted() {
-    this.pageLong = document.body.clientHeight > window.innerHeight
   },
   methods: {
     onPage(pageName) {

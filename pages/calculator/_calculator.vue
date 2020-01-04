@@ -22,7 +22,7 @@
 
     <b-button @click="solve" type="is-primary">Solve</b-button>
 
-    <div v-html="table" />
+    <div v-if="table !== ''" v-html="table" />
   </div>
 </template>
 
