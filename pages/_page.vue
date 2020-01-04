@@ -4,6 +4,7 @@
 
 <script>
 const anchorRegExp = RegExp('(?!<a href=\\"e)#.+?(?=\\">)', 'g')
+
 export default {
   data() {
     return { p5Instances: [] }
@@ -16,7 +17,7 @@ export default {
         anchorRegExp,
         (match) => `${page}${match}`
       )
-      return { content: linkFixedContent }
+      return { page, content: linkFixedContent }
     } catch (err) {
       error({
         statusCode: 404,
@@ -42,6 +43,15 @@ export default {
   methods: {
     scrollToTop() {
       window.scrollTo(0, 0)
+    }
+  },
+  head() {
+    if (this.page !== 'index') {
+      return {
+        title: this.$store.state.pages.find(
+          (object) => object.name === this.page
+        ).title
+      }
     }
   }
 }

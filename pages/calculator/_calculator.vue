@@ -96,6 +96,11 @@ export default {
         displayMode: true
       })
     }
+  },
+  head() {
+    return {
+      title: `${this.title} calculator`
+    }
   }
 }
 </script>
