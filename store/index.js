@@ -1,5 +1,5 @@
 import pagesGenerator from '~/pages'
-import utilities from '~/utilities'
+import calculators from '~/js/calculators'
 
 const titleRegex = /h1.*?>(.*?)</m
 
@@ -30,9 +30,7 @@ export const actions = {
         })
     )
 
-    const calculators = utilities.calculators
-
-    await commit('setPages', pages, calculators)
+    await commit('setPages', pages)
     await commit('setCalculators', calculators)
   }
 }

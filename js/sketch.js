@@ -1,25 +1,51 @@
-class Sketch {
-  constructor(p5, update, paused = true) {
+export default class Sketch {
+  constructor(p5, update = () => {}, noPlay = false, paused = true) {
     this.p5 = p5
     this.updateFunction = update
-    this.canvas = p5.createCanvas(16, 9).elt
-    this.canvas.classList.add('has-ratio')
-    this.resize()
 
     this.paused = paused
     this.time = 0
     this.lastTime = 0
 
-    p5.loadFont('/numerically-solving-equations/robotomono.ttf', (font) => {
-      this.p5.textFont(font)
-      this.p5.redraw()
-    })
+    this.graphs = []
+    this.animations = []
 
-    p5.disableFriendlyErrors = true
+    p5.setup = () => {
+      this.canvas = p5.createCanvas(16, 9).elt
+      this.canvas.classList.add('has-ratio')
+      this.resize()
+      this.graphs.forEach((graph) => {
+        graph.resize()
+      })
 
-    if (this.paused) {
-      update(this)
-      p5.noLoop()
+      p5.loadFont('/numerically-solving-equations/robotomono.ttf', (font) => {
+        this.p5.textFont(font)
+        this.p5.redraw()
+      })
+
+      p5.disableFriendlyErrors = true
+
+      if (this.paused) {
+        this.updateFunction(this)
+        p5.noLoop()
+      }
+    }
+
+    p5.windowResized = () => {
+      this.resize()
+      this.graphs.forEach((graph) => {
+        graph.resize()
+      })
+      p5.redraw()
+    }
+
+    if (!noPlay) {
+      p5.mouseClicked = (event) => {
+        if (event.target.classList.contains('p5Canvas')) {
+          this.handleClick(event.target)
+          return false
+        }
+      }
     }
   }
 
@@ -34,7 +60,9 @@ class Sketch {
 
   update() {
     if (!this.paused) {
+      this.passTime()
       this.updateFunction(this)
+      this.animations.forEach((animation) => animation.update())
     }
   }
 
@@ -55,6 +83,28 @@ class Sketch {
       this.paused = true
       this.p5.noLoop()
     }
+  }
+
+  addGraph(x, y, width, height, xAxis, yAxis, xScale, yScale) {
+    const graph = new Graph(
+      this,
+      x,
+      y,
+      width,
+      height,
+      xAxis,
+      yAxis,
+      xScale,
+      yScale
+    )
+    this.graphs.push(graph)
+    return graph
+  }
+
+  addAnimation(keyframes) {
+    const animation = new Animation(this, keyframes)
+    this.animations.push(animation)
+    return animation
   }
 
   displayList(list) {
@@ -93,8 +143,6 @@ class Graph {
     this.yAxis = yAxis
     this.xScale = xScale
     this.yScale = yScale
-
-    this.resize()
   }
 
   resize() {
@@ -250,158 +298,5 @@ class Animation {
     }
 
     this.lastTime = this.sketch.time
-  }
-}
-
-const mapObjectValues = (object, f) =>
-  Object.fromEntries(
-    Object.entries(object).map(([key, value]) => [key, f(value)])
-  )
-
-const roundToDp = (number, dp) => +(Math.round(number + `e+${dp}`) + `e-${dp}`)
-
-const straddle = (table, f) => {
-  const lastRow = table[table.length - 1]
-  const { a, b, c } = mapObjectValues(lastRow, (x) => Math.sign(f({ x })))
-
-  if (c === a) {
-    table.push({
-      a: lastRow.c,
-      b: lastRow.b,
-      c: 0
-    })
-  } else if (c === b) {
-    table.push({
-      a: lastRow.a,
-      b: lastRow.c,
-      c: 0
-    })
-  } else {
-    return true
-  }
-}
-
-const sameAccuracy = (table, accuracy, key) => {
-  if (table.length < 2) {
-    return false
-  }
-
-  return (
-    roundToDp(table[table.length - 1][key], accuracy) ===
-    roundToDp(table[table.length - 2][key], accuracy)
-  )
-}
-
-const bisection = (f, a, b, accuracy) => {
-  const table = [
-    {
-      a,
-      b,
-      c: null
-    }
-  ]
-
-  while (true) {
-    const lastRow = table[table.length - 1]
-    lastRow.c = (lastRow.a + lastRow.b) / 2
-
-    if (sameAccuracy(table, accuracy, 'c')) {
-      break
-    }
-
-    if (straddle(table, f)) {
-      break
-    }
-  }
-
-  return table
-}
-
-const falsePosition = (f, a, b, accuracy) => {
-  const table = [
-    {
-      a,
-      b,
-      c: 0
-    }
-  ]
-
-  while (true) {
-    const lastRow = table[table.length - 1]
-
-    const fLastRow = mapObjectValues(lastRow, (x) => f({ x }))
-
-    lastRow.c =
-      (lastRow.a * fLastRow.b - lastRow.b * fLastRow.a) /
-      (fLastRow.b - fLastRow.a)
-    fLastRow.c = f({ x: lastRow.c })
-
-    if (sameAccuracy(table, accuracy, 'c')) {
-      break
-    }
-
-    if (straddle(table, f)) {
-      break
-    }
-  }
-
-  return table
-}
-
-export default {
-  Sketch,
-  Graph,
-  Animation,
-  mapObjectValues,
-  roundToDp,
-  calculators: {
-    bisection: {
-      name: 'Bisection method',
-      function: 'e^x - 4x',
-      parameters: [
-        {
-          name: 'a',
-          type: 'Float',
-          value: 0
-        },
-        {
-          name: 'b',
-          type: 'Float',
-          value: 1
-        },
-        {
-          name: 'Accuracy',
-          type: 'Integer',
-          value: 1
-        }
-      ],
-      columns: ['a', 'f(a)', 'b', 'f(b)', 'c', 'f(c)']
-    },
-    falsePosition: {
-      name: 'False position',
-      function: '(x + 1/4)! - 1',
-      parameters: [
-        {
-          name: 'a',
-          type: 'Float',
-          value: 0
-        },
-        {
-          name: 'b',
-          type: 'Float',
-          value: 1
-        },
-        {
-          name: 'Accuracy',
-          type: 'Int',
-          value: 2
-        }
-      ],
-      columns: ['a', 'f(a)', 'b', 'f(b)', 'c', 'f(c)']
-    }
-  },
-  methods: {
-    bisection,
-    falsePosition
   }
 }

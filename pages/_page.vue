@@ -29,7 +29,9 @@ export default {
     const P5 = require('p5')
     const sketches = document.getElementsByClassName('sketch')
     Array.from(sketches).forEach(async (sketch) => {
-      const p = await import(`~/sketches/${sketch.getAttribute('sketch')}.js`)
+      const p = await import(
+        `~/js/sketches/${sketch.getAttribute('sketch')}.js`
+      )
       this.p5Instances.push(new P5(p.default, sketch))
     })
 

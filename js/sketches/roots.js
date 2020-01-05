@@ -1,41 +1,23 @@
-import utilities from '../utilities'
+import Sketch from '../sketch'
 
 export default (p5) => {
-  let sketch = null
-  let graph = null
-
   const roots = new Array(3)
 
   const getY = ({ x }) => roots.map((root) => x - root).reduce((a, b) => a * b)
 
-  const update = (s) => {
-    s.passTime()
+  const update = (sketch) => {
     p5.noiseSeed(0)
 
     for (let i = 0; i < roots.length; i += 1) {
-      roots[i] = p5.noise(s.time + 1000 * i) / roots.length + i / roots.length
+      roots[i] =
+        p5.noise(sketch.time + 1000 * i) / roots.length + i / roots.length
     }
 
     roots.sort((a, b) => a - b)
   }
 
-  p5.setup = () => {
-    sketch = new utilities.Sketch(p5, update)
-    graph = new utilities.Graph(sketch, 0.05, 0.15, 0.9, 0.8, 0, 0.5, 1, 0.1)
-  }
-
-  p5.windowResized = () => {
-    sketch.resize()
-    graph.resize()
-    p5.redraw()
-  }
-
-  p5.mouseClicked = (event) => {
-    if (event.target.classList.contains('p5Canvas')) {
-      sketch.handleClick(event.target)
-      return false
-    }
-  }
+  const sketch = new Sketch(p5, update)
+  const graph = sketch.addGraph(0.05, 0.15, 0.9, 0.8, 0, 0.5, 1, 0.1)
 
   p5.draw = () => {
     sketch.update()

@@ -30,7 +30,8 @@
 import { parse, compile } from 'mathjs'
 import { renderToString } from 'katex'
 
-import utilities from '~/utilities'
+import calculators from '~/js/calculators'
+import methods from '~/js/methods'
 
 export default {
   computed: {
@@ -50,7 +51,7 @@ export default {
   },
   asyncData({ params, error }) {
     const calculatorKey = params.calculator
-    const calculator = utilities.calculators[calculatorKey]
+    const calculator = calculators[calculatorKey]
 
     if (calculator === undefined) {
       error({
@@ -74,7 +75,7 @@ export default {
   methods: {
     solve() {
       const { evaluate } = compile(this.lastF)
-      const table = utilities.methods[this.calculatorKey](
+      const table = methods[this.calculatorKey](
         evaluate,
         ...this.parameters.map((parameter) => parameter.value)
       )
