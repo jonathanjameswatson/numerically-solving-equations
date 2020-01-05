@@ -92,7 +92,8 @@ export default {
       name: 'Numerically Solving Equations',
       theme_color: '#FF7070',
       ogHost: 'https://jonathanjameswatson.github.io',
-      twitterCard: 'summary'
+      ogImage: '/numerically-solving-equations/preview.png',
+      twitterCard: 'summary_large_image'
     },
     manifest: {
       name: 'Numerically Solving Equations',
