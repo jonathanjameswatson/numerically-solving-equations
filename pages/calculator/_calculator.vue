@@ -27,11 +27,19 @@
 </template>
 
 <script>
-import { parse, compile } from 'mathjs'
+import { create, all } from 'mathjs'
 import { renderToString } from 'katex'
 
 import calculators from '~/js/calculators'
 import methods from '~/js/methods'
+
+const subscript = (a, b) => a
+
+// eslint-disable-next-line no-template-curly-in-string
+subscript.toTex = '${args[0]}_{${args[1]}}'
+
+const mathjs = create(all)
+mathjs.import({ subscript })
 
 export default {
   computed: {
@@ -44,7 +52,7 @@ export default {
   watch: {
     f() {
       try {
-        this.fTex = parse(`y == ${this.f}`).toTex()
+        this.fTex = mathjs.parse(`${this.leftSide} == ${this.f}`).toTex()
         this.lastF = this.f
       } catch {}
     }
@@ -65,24 +73,35 @@ export default {
       title: calculator.name,
       parameters: calculator.parameters,
       columns: calculator.columns,
+      addF: calculator.addF,
+      leftSide: calculator.leftSide,
       calculatorKey,
       f: calculator.function,
       lastF: calculator.function,
-      fTex: parse(`y == ${calculator.function}`).toTex(),
+      fTex: mathjs
+        .parse(`${calculator.leftSide} == ${calculator.function}`)
+        .toTex(),
       table: ''
     }
   },
   methods: {
     solve() {
-      const { evaluate } = compile(this.lastF)
+      const { evaluate } = mathjs.compile(this.lastF)
       const table = methods[this.calculatorKey](
         evaluate,
         ...this.parameters.map((parameter) => parameter.value)
       )
 
+      const addF = (x) => {
+        if (this.addF) {
+          return `${x} & ${evaluate({ x })}`
+        }
+        return x
+      }
+
       const makeRows = (row) =>
         `${Object.values(row)
-          .map((x) => `${x} & ${evaluate({ x })}`)
+          .map(addF)
           .join(' & ')} \\\\ \\hline`
 
       const array = `
