@@ -72,7 +72,7 @@ export default {
       title: calculator.name,
       parameters: calculator.parameters,
       columns: calculator.columns,
-      addF: calculator.addF,
+      addR: calculator.addR,
       leftSide: calculator.leftSide,
       calculatorKey,
       f: calculator.function,
@@ -111,23 +111,45 @@ export default {
         })
       )
 
-      const addF = (x) => {
-        if (this.addF) {
-          return `${x} & ${evaluate({ x })}`
+      const addF = ([key, x]) => {
+        const column = this.columns.find((element) => element.name === key)
+        if (column) {
+          if (column.addF) {
+            return `${x} & ${evaluate({ x })}`
+          }
         }
+
         return x
       }
 
-      const makeRows = (row) =>
-        `${Object.values(row)
+      const makeRows = (row, i) => {
+        let start = ''
+        if (this.addR) {
+          start = `${i} &`
+        }
+
+        return `${start} ${Object.entries(row)
           .map(addF)
           .join(' & ')} \\\\ \\hline`
+      }
+
+      const columns = this.columns.flatMap((column) => {
+        if (column.addF) {
+          return [column.name, `f(${column.name})`]
+        }
+
+        return column.name
+      })
+
+      if (this.addR) {
+        columns.unshift('r')
+      }
 
       const array = `
       \\begin{array}{|${Array(Object.values(table[0]).length * 2)
         .fill('c|')
         .join('')}} \\hline
-      ${this.columns.join(' & ')} \\\\ \\hline
+      ${columns.join(' & ')} \\\\ \\hline
       ${table.map(makeRows).join(' ')}
       \\end{array}`
 

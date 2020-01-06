@@ -3,7 +3,6 @@ import { sameAccuracy } from '../utilities'
 export default (f, x0, lambda, accuracy) => {
   const table = [
     {
-      r: 0,
       x_r: x0
     }
   ]
@@ -19,7 +18,6 @@ export default (f, x0, lambda, accuracy) => {
     const newX = (1 - lambda) * x + lambda * f({ x })
 
     table.push({
-      r: table.length,
       x_r: newX
     })
   }

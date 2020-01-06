@@ -20,8 +20,21 @@ export default {
         value: 1
       }
     ],
-    columns: ['a', 'f(a)', 'b', 'f(b)', 'c', 'f(c)'],
-    addF: true
+    columns: [
+      {
+        name: 'a',
+        addF: true
+      },
+      {
+        name: 'b',
+        addF: true
+      },
+      {
+        name: 'c',
+        addF: true
+      }
+    ],
+    addR: false
   },
   falsePosition: {
     name: 'False position',
@@ -44,8 +57,21 @@ export default {
         value: 2
       }
     ],
-    columns: ['a', 'f(a)', 'b', 'f(b)', 'c', 'f(c)'],
-    addF: true
+    columns: [
+      {
+        name: 'a',
+        addF: true
+      },
+      {
+        name: 'b',
+        addF: true
+      },
+      {
+        name: 'c',
+        addF: true
+      }
+    ],
+    addR: false
   },
   fixedPointIteration: {
     name: 'Fixed point iteration',
@@ -68,8 +94,13 @@ export default {
         value: 2
       }
     ],
-    columns: ['r', 'x_r'],
-    addF: false
+    columns: [
+      {
+        name: 'x_r',
+        addF: false
+      }
+    ],
+    addR: true
   },
   newtonRaphson: {
     name: 'Newton Raphson',
@@ -91,7 +122,49 @@ export default {
         value: 2
       }
     ],
-    columns: ['r', 'x_r'],
-    addF: false
+    columns: [
+      {
+        name: 'x_r',
+        addF: false
+      }
+    ],
+    addR: true
+  },
+  secant: {
+    name: 'Secant method',
+    function: '4x^3 - 5x + 1',
+    leftSide: 'f(x)',
+    parameters: [
+      {
+        name: 'x_0',
+        type: 'Float',
+        value: -0.5
+      },
+      {
+        name: 'x_1',
+        type: 'Float',
+        value: 0
+      },
+      {
+        name: 'Accuracy',
+        type: 'Integer',
+        value: 2
+      }
+    ],
+    columns: [
+      {
+        name: 'x_r',
+        addF: true
+      },
+      {
+        name: 'x_{r + 1}',
+        addF: true
+      },
+      {
+        name: 'x_{r + 2}',
+        addF: true
+      }
+    ],
+    addR: true
   }
 }

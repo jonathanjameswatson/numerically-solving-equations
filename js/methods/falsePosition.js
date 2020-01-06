@@ -17,7 +17,6 @@ export default (f, a, b, accuracy) => {
     lastRow.c =
       (lastRow.a * fLastRow.b - lastRow.b * fLastRow.a) /
       (fLastRow.b - fLastRow.a)
-    fLastRow.c = f({ x: lastRow.c })
 
     if (sameAccuracy(table, accuracy, 'c')) {
       break
