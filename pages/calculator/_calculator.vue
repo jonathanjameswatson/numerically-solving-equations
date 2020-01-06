@@ -2,27 +2,34 @@
   <div>
     <h1 class="title">{{ title }} calculator</h1>
 
-    <b-field label="Function">
-      <b-input v-model="f" />
-    </b-field>
+    <form>
+      <b-field label="Function">
+        <b-input v-model="f" />
+      </b-field>
 
-    <div v-html="fKatex"></div>
+      <div v-html="fKatex"></div>
 
-    <b-field
-      v-for="(parameter, index) in parameters"
-      :key="index"
-      :label="parameter.name"
-    >
-      <b-numberinput
-        v-if="parameter.type === 'Integer' || parameter.type === 'Float'"
-        :controls="false"
-        :step="parameter.type === 'Integer' ? 1 : 'any'"
-        v-model="parameter.value"
-      />
-      <b-input v-else v-model="parameter.value"> </b-input>
-    </b-field>
+      <b-field
+        v-for="(parameter, index) in parameters"
+        :key="index"
+        :label="parameter.name"
+      >
+        <b-numberinput
+          v-if="parameter.type === 'Integer' || parameter.type === 'Float'"
+          :controls="false"
+          :step="parameter.type === 'Integer' ? 1 : 'any'"
+          v-model="parameter.value"
+        />
+        <b-input v-else v-model="parameter.value"> </b-input>
+      </b-field>
 
-    <b-button @click="solve" type="is-primary">Solve</b-button>
+      <b-button
+        @click.stop.prevent="solve"
+        type="is-primary"
+        native-type="submit"
+        >Solve</b-button
+      >
+    </form>
 
     <div v-if="table !== ''" v-html="table" />
   </div>
