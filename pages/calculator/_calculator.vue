@@ -14,10 +14,12 @@
       :label="parameter.name"
     >
       <b-numberinput
+        v-if="parameter.type === 'Integer' || parameter.type === 'Float'"
         :controls="false"
         :step="parameter.type === 'Integer' ? 1 : 'any'"
         v-model="parameter.value"
       />
+      <b-input v-else v-model="parameter.value"> </b-input>
     </b-field>
 
     <b-button @click="solve" type="is-primary">Solve</b-button>
@@ -51,10 +53,7 @@ export default {
   },
   watch: {
     f() {
-      try {
-        this.fTex = mathjs.parse(`${this.leftSide} == ${this.f}`).toTex()
-        this.lastF = this.f
-      } catch {}
+      this.watchF()
     }
   },
   asyncData({ params, error }) {
@@ -78,18 +77,38 @@ export default {
       calculatorKey,
       f: calculator.function,
       lastF: calculator.function,
-      fTex: mathjs
-        .parse(`${calculator.leftSide} == ${calculator.function}`)
-        .toTex(),
+      fTex: '',
       table: ''
     }
   },
+  mounted() {
+    this.watchF()
+  },
   methods: {
+    watchF() {
+      try {
+        this.fTex = mathjs.parse(`${this.leftSide} == ${this.f}`).toTex()
+        this.lastF = this.f
+
+        this.parameters.forEach((parameter) => {
+          if (parameter.type === 'Derivative') {
+            const derivative = mathjs.derivative(mathjs.parse(this.f), 'x')
+            parameter.value = derivative.toString()
+          }
+        })
+      } catch {}
+    },
     solve() {
       const { evaluate } = mathjs.compile(this.lastF)
       const table = methods[this.calculatorKey](
         evaluate,
-        ...this.parameters.map((parameter) => parameter.value)
+        ...this.parameters.map((parameter) => {
+          if (parameter.type === 'Derivative') {
+            return mathjs.compile(parameter.value).evaluate
+          }
+
+          return parameter.value
+        })
       )
 
       const addF = (x) => {

@@ -71,6 +71,21 @@ export default {
     columns: ['r', 'x_r'],
     addF: false
   },
+  newtonRaphson: {
+    name: 'Newton Raphson',
+    function: 'x^4 + x - 3',
+    leftSide: 'f(x)',
+    parameters: [
+      {
+        name: "f'(x)",
+        type: 'Derivative'
+      },
+      {
+        name: 'x_0',
+        type: 'Float',
+        value: 0
+      },
+      {
         name: 'Accuracy',
         type: 'Integer',
         value: 2
