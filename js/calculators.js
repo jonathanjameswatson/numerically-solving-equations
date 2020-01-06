@@ -58,6 +58,19 @@ export default {
         value: 0
       },
       {
+        name: 'Relaxation (λ)',
+        type: 'Float',
+        value: 1
+      },
+      {
+        name: 'Accuracy',
+        type: 'Integer',
+        value: 2
+      }
+    ],
+    columns: ['r', 'x_r'],
+    addF: false
+  },
         name: 'Accuracy',
         type: 'Integer',
         value: 2
