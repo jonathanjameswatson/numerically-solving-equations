@@ -9,7 +9,7 @@ export default (f, a, b, accuracy) => {
     }
   ]
 
-  while (true) {
+  for (let i = 0; i < 50; i += 1) {
     const lastRow = table[table.length - 1]
     lastRow.c = (lastRow.a + lastRow.b) / 2
 

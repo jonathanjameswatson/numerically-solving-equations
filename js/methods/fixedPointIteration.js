@@ -8,7 +8,7 @@ export default (f, x0, accuracy) => {
     }
   ]
 
-  while (true) {
+  for (let i = 0; i < 50; i += 1) {
     const lastRow = table[table.length - 1]
 
     if (sameAccuracy(table, accuracy, 'x_r')) {
