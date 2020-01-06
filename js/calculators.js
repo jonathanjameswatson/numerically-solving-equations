@@ -40,7 +40,7 @@ export default {
       },
       {
         name: 'Accuracy',
-        type: 'Int',
+        type: 'Integer',
         value: 2
       }
     ],
@@ -59,7 +59,7 @@ export default {
       },
       {
         name: 'Accuracy',
-        type: 'Int',
+        type: 'Integer',
         value: 2
       }
     ],
