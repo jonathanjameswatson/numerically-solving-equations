@@ -33,6 +33,9 @@ Numerically Solving Equations is a website for explaining and visualising basic 
 
 * Bisection method
 * False position
+* Fixed point iteration
+* Newton-Raphson method
+* Secant method
 
 ## To do
 

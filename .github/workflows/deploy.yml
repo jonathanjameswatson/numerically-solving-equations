@@ -1,0 +1,38 @@
+name: Deploy to GitHub pages
+
+on:
+  push:
+    branches:
+     - master
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - 
+      name: Checkout
+      uses: actions/checkout@v2
+    -
+      name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - 
+      name: Install
+      run: npm install
+    - 
+      name: Generate
+      run: npm run generate --if-present
+    - 
+      name: Deploy
+      if: success()
+      uses: crazy-max/ghaction-github-pages@v1
+      with:
+        target_branch: gh-pages
+        build_dir: dist
+      env:
+        GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
+    
+      
