@@ -92,7 +92,7 @@ export default {
     meta: {
       name: 'Numerically Solving Equations',
       theme_color: '#FF7070',
-      ogHost: 'https://jonathanjameswatson.github.io',
+      ogHost: 'https://jonathanjameswatson.com',
       ogImage: '/numerically-solving-equations/preview.png',
       twitterCard: 'summary_large_image'
     },
@@ -107,7 +107,7 @@ export default {
    ** Sitemap configuration
    */
   sitemap: {
-    hostname: 'https://jonathanjameswatson.github.io',
+    hostname: 'https://jonathanjameswatson.com',
     gzip: true
   }
 }
