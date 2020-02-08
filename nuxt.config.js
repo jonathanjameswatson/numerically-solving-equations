@@ -29,7 +29,8 @@ export default {
     ['nuxt-buefy', { css: false }],
     '@nuxtjs/pwa',
     '@nuxtjs/markdownit',
-    '~/modules/routes.js'
+    '~/modules/routes.js',
+    '@nuxtjs/sitemap'
   ],
   /*
    ** Markdownit configuration
@@ -101,5 +102,12 @@ export default {
       theme_color: '#FF7070',
       display: 'fullscreen'
     }
+  },
+  /*
+   ** Sitemap configuration
+   */
+  sitemap: {
+    hostname: 'https://jonathanjameswatson.github.io',
+    gzip: true
   }
 }
