@@ -46,12 +46,14 @@ html {
   top: $gap;
 }
 
-canvas {
-  border-radius: $radius-large;
-}
-
 input[type="number"] {
   appearance: textfield;
+}
+
+.sketch {
+  background-color: #FF7070;
+  border-radius: $radius-large;
+  overflow: hidden;
 }
 
 @import "bulma/sass/base/_all.sass";
