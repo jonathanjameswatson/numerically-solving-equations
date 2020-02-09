@@ -1,7 +1,8 @@
-import Vue from 'vue'
 import pageNames from '../assets/contents/pages'
 import methods from '../js/methods'
 import calculatorList from '~/js/calculators'
+
+import Vue from 'vue'
 
 const capitals = /[A-Z]/g
 const dashes = /-/g
