@@ -1,10 +1,16 @@
-import pagesGenerator from '../pages'
+import pageNames from '../assets/contents/pages'
 import methods from '../js/methods'
 
-export default async function routes() {
-  const pageNames = await pagesGenerator()
-  const methodNames = Object.getOwnPropertyNames(methods)
-  const routes = pageNames.map((page) => `/${page}`)
+const capitals = /[A-Z]/g
+
+export default function routes() {
+  const methodNames = Object.getOwnPropertyNames(methods).map((name) =>
+    name.replace(capitals, (match) => `-${match.toLowerCase()}`)
+  )
+
+  const routes = ['/']
+  routes.push(...pageNames.map((page) => `/${page}`))
   routes.push(...methodNames.map((method) => `/calculator/${method}`))
+
   this.options.generate.routes = this.options.generate.routes.concat(routes)
 }

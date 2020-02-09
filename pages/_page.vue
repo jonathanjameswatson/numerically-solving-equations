@@ -50,9 +50,7 @@ export default {
   head() {
     if (this.page !== 'index') {
       return {
-        title: this.$store.state.pages.find(
-          (object) => object.name === this.page
-        ).title
+        title: this.$pages.find((object) => object.name === this.page).title
       }
     }
   }

@@ -40,11 +40,11 @@
               </b-menu-list>
               <b-menu-list aria-role="menu" label="Calculators">
                 <b-menu-item
-                  v-for="(calculator, key, index) in calculators"
+                  v-for="(calculator, index) in calculators"
                   :key="index"
-                  :label="calculator.name"
-                  :to="`/calculator/${key}`"
-                  :active="onPage(`calculator/${key}`)"
+                  :label="calculator.title"
+                  :to="`/calculator/${calculator.name}`"
+                  :active="onPage(`calculator/${calculator.name}`)"
                   tag="nuxt-link"
                   aria-role="menuitem"
                 />
@@ -85,8 +85,8 @@
 export default {
   data() {
     return {
-      pages: this.$store.state.pages,
-      calculators: this.$store.state.calculators
+      pages: this.$pages,
+      calculators: this.$calculators
     }
   },
   methods: {

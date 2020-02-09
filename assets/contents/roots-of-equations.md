@@ -1,4 +1,4 @@
-# Roots of equations and graphs
+# Roots of equations
 
 The roots of an equation are the values of x where the equation is true.
 

@@ -63,8 +63,11 @@ export default {
       this.watchF()
     }
   },
-  asyncData({ params, error }) {
-    const calculatorKey = params.calculator
+  asyncData({ params, error, app }) {
+    const name = params.calculator
+    const calculatorKey = app.calculators.find(
+      (calculator) => calculator.name === name
+    ).file
     const calculator = calculators[calculatorKey]
 
     if (calculator === undefined) {

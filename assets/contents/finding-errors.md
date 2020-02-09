@@ -1,4 +1,4 @@
-# Absolute and relative errors
+# Finding errors
 
 An approximation is any value that is similar but not equal to something else.
 

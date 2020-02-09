@@ -103,7 +103,7 @@ export default {
     addR: true
   },
   newtonRaphson: {
-    name: 'Newton Raphson',
+    name: 'Newton-Raphson method',
     function: 'x^4 + x - 3',
     leftSide: 'f(x)',
     parameters: [

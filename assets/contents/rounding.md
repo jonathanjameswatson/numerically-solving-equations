@@ -1,4 +1,4 @@
-# Rounding and chopping
+# Rounding
 
 Values can be rounded to a certain accuracy to create approximations.
 

@@ -1,4 +1,4 @@
-# Arithmetic using approximate values
+# Arithmetic with approximations
 
 [[toc]]
 
