@@ -58,17 +58,6 @@ export default {
     ]
   },
   /*
-   ** Build configuration
-   */
-  build: {
-    /*
-     ** You can extend webpack config here
-     */
-    extend(config, ctx) {
-      config.node = { fs: 'empty' }
-    }
-  },
-  /*
    ** Generate configuration
    */
   generate: {
@@ -91,6 +80,8 @@ export default {
   pwa: {
     meta: {
       name: 'Numerically Solving Equations',
+      description:
+        'Numerically Solving Equations is a website designed to demonstrate how numerical methods can be used to find the roots of equations. It has interactive diagrams to demonstrate numerical processes as well as calculators to find roots with tables. This website has information on bisection method, false position, fixed point iteration, Newton-Raphson method and Secant method.',
       theme_color: '#FF7070',
       ogHost: 'https://jonathanjameswatson.com',
       ogImage: '/numerically-solving-equations/preview.png',
