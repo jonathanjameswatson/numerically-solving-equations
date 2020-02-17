@@ -28,6 +28,7 @@ export default {
     // Doc: https://buefy.github.io/#/documentation
     ['nuxt-buefy', { css: false, materialDesignIcons: false }],
     '@nuxtjs/pwa',
+    'nuxt-responsive-loader',
     '@nuxtjs/markdownit',
     '~/modules/routes.js',
     '@nuxtjs/sitemap'
@@ -100,5 +101,13 @@ export default {
   sitemap: {
     hostname: 'https://jonathanjameswatson.com',
     gzip: true
+  },
+  /*
+   ** Responsive loader configuration
+   */
+  responsiveLoader: {
+    min: 16,
+    max: 512,
+    adapter: require('responsive-loader/sharp')
   }
 }

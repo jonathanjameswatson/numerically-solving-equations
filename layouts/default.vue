@@ -4,7 +4,11 @@
       <template slot="brand">
         <b-navbar-item tag="nuxt-link" to="/">
           <figure class="image is-16x16">
-            <img src="~assets/icon.png" alt="Numerically Solving Equations" />
+            <img
+              :srcSet="icon.srcSet"
+              :src="icon.src"
+              alt="Numerically Solving Equations"
+            />
           </figure>
           <h1 class="title has-text-light is-6" aria-hidden="true">
             umerically Solving Equations
@@ -77,11 +81,14 @@
 </template>
 
 <script>
+const icon = require('~/assets/icon.png')
+
 export default {
   data() {
     return {
       pages: this.$pages,
-      calculators: this.$calculators
+      calculators: this.$calculators,
+      icon
     }
   },
   methods: {

@@ -22,7 +22,9 @@
     "mathjs": "^6.3.0",
     "nuxt": "^2.0.0",
     "nuxt-buefy": "^0.3.2",
-    "p5": "^0.10.2"
+    "nuxt-responsive-loader": "^2.0.1",
+    "p5": "^0.10.2",
+    "sharp": "^0.24.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.0.1",
