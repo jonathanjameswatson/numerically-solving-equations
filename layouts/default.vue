@@ -3,14 +3,18 @@
     <b-navbar type="is-primary" wrapper-class="container">
       <template slot="brand">
         <b-navbar-item tag="nuxt-link" to="/">
-          <figure class="image is-16x16">
+          <figure class="image is-16x16 logo">
             <img
               :srcSet="icon.srcSet"
               :src="icon.src"
+              sizes="16px"
               alt="Numerically Solving Equations"
             />
           </figure>
-          <h1 class="title has-text-light is-6" aria-hidden="true">
+          <h1
+            class="title has-text-light is-6 has-text-weight-normal"
+            aria-hidden="true"
+          >
             umerically Solving Equations
           </h1>
         </b-navbar-item>

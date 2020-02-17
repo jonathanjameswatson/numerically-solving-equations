@@ -1,5 +1,7 @@
 import markdownItPlugin from './markdownItPlugin.js'
 
+import sharp from 'responsive-loader/sharp'
+
 export default {
   mode: 'universal',
   /*
@@ -107,7 +109,7 @@ export default {
    */
   responsiveLoader: {
     min: 16,
-    max: 512,
-    adapter: require('responsive-loader/sharp')
+    max: 128,
+    adapter: sharp
   }
 }
