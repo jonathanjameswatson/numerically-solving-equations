@@ -11,7 +11,13 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['katex/dist/katex.min.css', '~/assets/scss/main.scss'],
+  css: [
+    {
+      src: 'katex/dist/katex.min.css',
+      defer: true
+    },
+    '~/assets/scss/main.scss'
+  ],
   /*
    ** Plugins to load before mounting the App
    */
