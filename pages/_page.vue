@@ -26,7 +26,7 @@ export default {
     }
   },
   mounted() {
-    const P5 = require('p5')
+    const P5 = require('p5/lib/p5.min.js')
     const sketches = document.getElementsByClassName('sketch')
     Array.from(sketches).forEach(async (sketch) => {
       const p = await import(

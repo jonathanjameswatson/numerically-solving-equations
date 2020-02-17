@@ -4,9 +4,12 @@
     <p v-if="error.statusCode === 404" class="subtitle">
       Page not found
     </p>
-    <p v-else>
-      An error occurred
-    </p>
+    <template v-else>
+      <p>
+        An error occurred
+      </p>
+      <br />
+    </template>
     <b-button tag="nuxt-link" type="is-link" to="/">
       Return to home
     </b-button>

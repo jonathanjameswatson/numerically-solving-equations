@@ -26,7 +26,7 @@ export default {
    */
   modules: [
     // Doc: https://buefy.github.io/#/documentation
-    ['nuxt-buefy', { css: false }],
+    ['nuxt-buefy', { css: false, materialDesignIcons: false }],
     '@nuxtjs/pwa',
     '@nuxtjs/markdownit',
     '~/modules/routes.js',

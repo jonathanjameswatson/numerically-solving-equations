@@ -50,15 +50,13 @@
                 />
               </b-menu-list>
             </b-menu>
-            <b-button
+            <button
               @click="scrollToTop()"
-              class="button-stick is-hidden-mobile"
-              icon-left="arrow-up"
-              type="is-primary"
-              outlined
+              class="button button-stick is-hidden-mobile is-primary is-outlined"
             >
-              Back to top
-            </b-button>
+              <span class="icon">▲</span>
+              <span>Back to top</span>
+            </button>
             <hr class="is-hidden-tablet" />
           </aside>
 
@@ -66,13 +64,10 @@
             <nuxt />
             <div class="is-hidden-tablet">
               <hr />
-              <b-button
-                @click="scrollToTop()"
-                icon-left="arrow-up"
-                type="is-link"
-              >
-                Back to top
-              </b-button>
+              <button @click="scrollToTop()" class="button is-link">
+                <span class="icon">▲</span>
+                <span>Back to top</span>
+              </button>
             </div>
           </div>
         </div>
