@@ -10,6 +10,10 @@ export default class Sketch {
     this.graphs = []
     this.animations = []
 
+    p5.preload = () => {
+      this.font = p5.loadFont('/numerically-solving-equations/robotomono.ttf')
+    }
+
     p5.setup = () => {
       this.canvas = p5.createCanvas(16, 9).elt
       this.canvas.classList.add('has-ratio')
@@ -18,10 +22,7 @@ export default class Sketch {
         graph.resize()
       })
 
-      p5.loadFont('/numerically-solving-equations/robotomono.ttf', (font) => {
-        this.p5.textFont(font)
-        this.p5.redraw()
-      })
+      p5.textFont(this.font)
 
       p5.disableFriendlyErrors = true
 

@@ -25,17 +25,18 @@ export default {
       })
     }
   },
-  mounted() {
-    const P5 = require('p5/lib/p5.min.js')
+  async mounted() {
+    const { default: P5 } = await import('p5/lib/p5.min.js')
     const sketches = document.getElementsByClassName('sketch')
-    Array.from(sketches).forEach(async (sketch) => {
-      const p = await import(
-        `~/js/sketches/${sketch.getAttribute('sketch')}.js`
-      )
-      this.p5Instances.push(new P5(p.default, sketch))
-    })
-
-    this.pageLong = document.body.clientHeight > window.innerHeight
+    await Promise.all(
+      Array.from(sketches).map(async (sketch) => {
+        const { default: instance } = await import(
+          `~/js/sketches/${sketch.getAttribute('sketch')}.js`
+        )
+        this.p5Instances.push(new P5(instance, sketch))
+        return true
+      })
+    )
   },
   beforeDestroy() {
     this.p5Instances.forEach((instance) => {
