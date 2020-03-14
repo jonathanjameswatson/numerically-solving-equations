@@ -19,7 +19,7 @@
     "katex": "^0.11.1",
     "markdown-it-anchor": "^5.2.5",
     "markdown-it-toc-done-right": "^4.1.0",
-    "mathjs": "^6.3.0",
+    "mathjs": "^6.6.1",
     "nuxt": "^2.0.0",
     "nuxt-buefy": "^0.3.2",
     "nuxt-responsive-loader": "^2.0.1",
