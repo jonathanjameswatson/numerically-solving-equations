@@ -16,17 +16,17 @@
       >
         <b-numberinput
           v-if="parameter.type === 'Integer' || parameter.type === 'Float'"
+          v-model="parameter.value"
           :controls="false"
           :step="parameter.type === 'Integer' ? 1 : 'any'"
-          v-model="parameter.value"
         />
         <b-input v-else v-model="parameter.value"> </b-input>
       </b-field>
 
       <b-button
-        @click.stop.prevent="solve"
         type="is-primary"
         native-type="submit"
+        @click.stop.prevent="solve"
         >Solve</b-button
       >
     </form>
@@ -51,18 +51,6 @@ const mathjs = create(all)
 mathjs.import({ subscript })
 
 export default {
-  computed: {
-    fKatex() {
-      return renderToString(this.fTex, {
-        displayMode: true
-      })
-    }
-  },
-  watch: {
-    f() {
-      this.watchF()
-    }
-  },
   asyncData({ params, error, app }) {
     const name = params.calculator
     const calculatorKey = app.calculators.find(
@@ -89,6 +77,18 @@ export default {
       lastF: calculator.function,
       fTex: '',
       table: ''
+    }
+  },
+  computed: {
+    fKatex() {
+      return renderToString(this.fTex, {
+        displayMode: true
+      })
+    }
+  },
+  watch: {
+    f() {
+      this.watchF()
     }
   },
   mounted() {
