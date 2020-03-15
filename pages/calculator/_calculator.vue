@@ -20,7 +20,7 @@
           :controls="false"
           :step="parameter.type === 'Integer' ? 1 : 'any'"
         />
-        <b-input v-else v-model="parameter.value"> </b-input>
+        <b-input v-else v-model="parameter.value" />
       </b-field>
 
       <b-button
@@ -36,19 +36,9 @@
 </template>
 
 <script>
-import { create, all } from 'mathjs'
 import { renderToString } from 'katex'
 
 import calculators from '~/js/calculators'
-import methods from '~/js/methods'
-
-const subscript = (a, b) => a
-
-// eslint-disable-next-line no-template-curly-in-string
-subscript.toTex = '${args[0]}_{${args[1]}}'
-
-const mathjs = create(all)
-mathjs.import({ subscript })
 
 export default {
   asyncData({ params, error, app }) {
@@ -69,8 +59,6 @@ export default {
     return {
       title: calculator.name,
       parameters: calculator.parameters,
-      columns: calculator.columns,
-      addR: calculator.addR,
       leftSide: calculator.leftSide,
       calculatorKey,
       f: calculator.function,
@@ -97,75 +85,25 @@ export default {
   methods: {
     watchF() {
       try {
-        this.fTex = mathjs.parse(`${this.leftSide} == ${this.f}`).toTex()
+        this.fTex = this.$getTex(`${this.leftSide} == ${this.f}`)
         this.lastF = this.f
 
         this.parameters.forEach((parameter) => {
           if (parameter.type === 'Derivative') {
-            const derivative = mathjs.derivative(mathjs.parse(this.f), 'x')
-            parameter.value = derivative.toString()
+            parameter.value = this.$getDerivativeString(this.f)
           }
         })
       } catch {}
     },
     solve() {
-      const { evaluate } = mathjs.compile(this.lastF)
-      const table = methods[this.calculatorKey](
-        evaluate,
-        ...this.parameters.map((parameter) => {
-          if (parameter.type === 'Derivative') {
-            return mathjs.compile(parameter.value).evaluate
-          }
-
-          return parameter.value
-        })
-      )
-
-      const addF = ([key, x]) => {
-        const column = this.columns.find((element) => element.name === key)
-        if (column) {
-          if (column.addF) {
-            return `${x} & ${evaluate({ x })}`
-          }
+      const f = this.$getF(this.lastF)
+      const parameters = this.parameters.map((parameter) => {
+        if (parameter.type === 'Derivative') {
+          return this.$getF(parameter.value)
         }
-
-        return x
-      }
-
-      const makeRows = (row, i) => {
-        let start = ''
-        if (this.addR) {
-          start = `${i} &`
-        }
-
-        return `${start} ${Object.entries(row)
-          .map(addF)
-          .join(' & ')} \\\\ \\hline`
-      }
-
-      const columns = this.columns.flatMap((column) => {
-        if (column.addF) {
-          return [column.name, `f(${column.name})`]
-        }
-
-        return column.name
+        return parameter.value
       })
-
-      if (this.addR) {
-        columns.unshift('r')
-      }
-
-      const array = `
-      \\begin{array}{|${Array(Object.values(table[0]).length * 2)
-        .fill('c|')
-        .join('')}} \\hline
-      ${columns.join(' & ')} \\\\ \\hline
-      ${table.map(makeRows).join(' ')}
-      \\end{array}`
-
-      this.table = renderToString(array, {
-        displayMode: true
-      })
+      this.table = this.$createTable(this.calculatorKey, f, parameters)
     }
   },
   head() {

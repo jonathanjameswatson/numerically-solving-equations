@@ -21,7 +21,11 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/contents.js'],
+  plugins: [
+    '~/plugins/contents.js',
+    '~/plugins/math.js',
+    '~/plugins/createTable.js'
+  ],
   /*
    ** Nuxt.js dev-modules
    */
