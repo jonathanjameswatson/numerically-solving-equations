@@ -1,6 +1,6 @@
-import markdownItPlugin from './markdownItPlugin.js'
-
 import sharp from 'responsive-loader/sharp'
+
+import markdownItPlugin from './markdownItPlugin.js'
 
 export default {
   mode: 'universal',

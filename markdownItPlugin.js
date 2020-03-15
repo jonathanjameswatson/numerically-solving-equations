@@ -6,7 +6,7 @@ const renderIFrame = (link) => {
   return `<figure class="image is-16by9"><iframe class="has-ratio" src="${link}" scrolling="no"></iframe></figure>`
 }
 
-const plugin = (md, opts) => {
+const plugin = (md) => {
   const defaultRenderer = md.renderer.rules.fence.bind(md.renderer.rules)
 
   md.renderer.rules.fence = (tokens, idx, opts, env, self) => {

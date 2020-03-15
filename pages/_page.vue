@@ -1,14 +1,11 @@
 <template>
-  <div v-html="content" class="content" />
+  <div class="content" v-html="content" />
 </template>
 
 <script>
 const anchorRegExp = RegExp('(?!<a href=\\"e)#.+?(?=\\">)', 'g')
 
 export default {
-  data() {
-    return { p5Instances: [] }
-  },
   async asyncData({ params, error }) {
     const page = params.page || 'index'
     try {
@@ -24,6 +21,9 @@ export default {
         message: 'This page could not be found.'
       })
     }
+  },
+  data() {
+    return { p5Instances: [] }
   },
   async mounted() {
     const { default: P5 } = await import('p5/lib/p5.min.js')

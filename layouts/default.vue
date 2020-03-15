@@ -59,8 +59,8 @@
               </b-menu-list>
             </b-menu>
             <button
-              @click="scrollToTop()"
               class="button button-stick is-hidden-mobile is-primary is-outlined"
+              @click="scrollToTop()"
             >
               <span class="icon">▲</span>
               <span>Back to top</span>
@@ -72,7 +72,7 @@
             <nuxt />
             <div class="is-hidden-tablet">
               <hr />
-              <button @click="scrollToTop()" class="button is-link">
+              <button class="button is-link" @click="scrollToTop()">
                 <span class="icon">▲</span>
                 <span>Back to top</span>
               </button>
