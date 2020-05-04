@@ -8,19 +8,19 @@ This website has several calculators for numerical methods can be found on the m
 
 Each numerical method has several parameters which change how they work. Common parameters are described below:
 
-* Accuracy - In each iteration of a numerical method, the approximation to the exact value will be compared to the last iteration's approximation. If they agree to the number of decimal places given by this parameter, the process will end. Each numerical method will last for no longer than 51 iterations.
+* $\text{Accuracy}$ - In each iteration of a numerical method, the approximation to the exact value will be compared to the last iteration's approximation. If they agree to the number of decimal places given by this parameter, the process will end. Each numerical method will last for no longer than 51 iterations.
 
-* a - This parameter usually refers to the left boundary of a numerical method.
+* $a$ - This parameter usually refers to the left boundary of a numerical method.
 
-* b - This parameter usually refers to the right boundary of a numerical method.
+* $b$ - This parameter usually refers to the right boundary of a numerical method.
 
-* x_0 - This parameter usually refers to the starting value, $x_0$, of a numerical method that uses a recurrence relation. It is also the equivalent of parameter a for the secant method.
+* $x_0$ - This parameter usually refers to the starting value of a numerical method that uses a recurrence relation. It is also the equivalent of parameter $$a$$ for the secant method.
 
-* Relaxation (λ) - This parameter refers to $\lambda$, the value that is used in the relaxation of fixed point iteration. If you do not want to apply relaxation, leave this value at 1.
+* $\text{Relaxation }(λ)$ - This parameter refers the value that is used in the relaxation of fixed point iteration. If you do not want to apply relaxation, leave this value at 1.
 
-* f'(x) - This parameter refers to the derivitive of the inputted function. This should be set automatically when you input the function. If this does not work or is incorrect, you can input a different formula for $f'(x)$.
+* $f'(x)$ - This parameter refers to the derivative of the inputted function. This should be set automatically when you input the function. If this does not work or is incorrect, you can input a different formula for it.
 
-* x_1 - This parameter is the equivalent of parameter b for the secant method.
+* $x_1$ - This parameter is the equivalent of parameter $$b$$ for the secant method.
 
 ## Function inputs
 

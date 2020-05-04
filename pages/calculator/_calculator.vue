@@ -3,17 +3,22 @@
     <h1 class="title">{{ title }} calculator</h1>
 
     <form>
-      <b-field label="Function">
+      <b-field>
+        <template slot="label">
+          <div v-html="titleKatex" />
+        </template>
         <b-input v-model="f" />
       </b-field>
 
-      <div v-html="fKatex"></div>
+      <div v-html="fKatex" />
 
-      <b-field
-        v-for="(parameter, index) in parameters"
-        :key="index"
-        :label="parameter.name"
-      >
+      <b-field v-for="(parameter, index) in parameters" :key="index">
+        <template slot="label">
+          <b-tooltip dashed :label="parameter.explanation" multilined>
+            <div v-html="parameterKatex[index]" />
+          </b-tooltip>
+        </template>
+
         <b-numberinput
           v-if="parameter.type === 'Integer' || parameter.type === 'Float'"
           v-model="parameter.value"
@@ -22,6 +27,8 @@
         />
         <b-input v-else v-model="parameter.value" />
       </b-field>
+
+      <hr />
 
       <b-button
         type="is-primary"
@@ -72,6 +79,12 @@ export default {
       return renderToString(this.fTex, {
         displayMode: true
       })
+    },
+    titleKatex() {
+      return renderToString('\\text{Function}')
+    },
+    parameterKatex() {
+      return this.parameters.map((parameter) => renderToString(parameter.katex))
     }
   },
   watch: {
