@@ -33,6 +33,25 @@
         />
       </b-field>
 
+      <b-field>
+        <template slot="label">
+          <b-tooltip
+            dashed
+            label="This is the number of decimal places each value in each cell will be rounded to."
+            multilined
+          >
+            <div aria-hidden="true" v-html="dpKatex" />
+          </b-tooltip>
+        </template>
+
+        <b-numberinput
+          v-model="decimalPlaces"
+          aria-label="Decimal place limit"
+          :controls="false"
+          :step="1"
+        />
+      </b-field>
+
       <hr />
 
       <b-button
@@ -76,7 +95,8 @@ export default {
       f: calculator.function,
       lastF: calculator.function,
       fTex: '',
-      table: ''
+      table: '',
+      decimalPlaces: 16
     }
   },
   computed: {
@@ -87,6 +107,9 @@ export default {
     },
     titleKatex() {
       return renderToString('\\text{Function}')
+    },
+    dpKatex() {
+      return renderToString('\\text{Decimal place limit}')
     },
     parameterKatex() {
       return this.parameters.map((parameter) => renderToString(parameter.katex))
@@ -121,7 +144,12 @@ export default {
         }
         return parameter.value
       })
-      this.table = this.$createTable(this.calculatorKey, f, parameters)
+      this.table = this.$createTable(
+        this.calculatorKey,
+        f,
+        parameters,
+        this.decimalPlaces
+      )
     }
   },
   head() {

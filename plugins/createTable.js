@@ -12,19 +12,25 @@ const generateColumnTitle = (column) => {
   return column.name
 }
 
-const createTable = (calculatorKey, f, parameters) => {
+const createTable = (calculatorKey, f, parameters, decimalPlaces) => {
   const { columns, addR } = calculators[calculatorKey]
   const method = methods[calculatorKey]
+
+  const round = (x) => {
+    if (decimalPlaces >= 16) return x
+    const power = 10 ** decimalPlaces
+    return Math.round((x + Number.EPSILON) * power) / power
+  }
 
   // Generates x with f(x) as well if addF is true
   const addF = ([key, x]) => {
     const column = columns.find((element) => element.name === key)
     if (column) {
       if (column.addF) {
-        return `${x} & ${f({ x })}`
+        return `${round(x)} & ${round(f({ x }))}`
       }
     }
-    return x
+    return round(x)
   }
 
   // Generates the text for a row of a table
