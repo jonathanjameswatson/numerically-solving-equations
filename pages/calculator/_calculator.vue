@@ -5,9 +5,9 @@
     <form>
       <b-field>
         <template slot="label">
-          <div v-html="titleKatex" />
+          <div aria-hidden="true" v-html="titleKatex" />
         </template>
-        <b-input v-model="f" />
+        <b-input v-model="f" aria-label="Close" />
       </b-field>
 
       <div v-html="fKatex" />
@@ -15,17 +15,22 @@
       <b-field v-for="(parameter, index) in parameters" :key="index">
         <template slot="label">
           <b-tooltip dashed :label="parameter.explanation" multilined>
-            <div v-html="parameterKatex[index]" />
+            <div aria-hidden="true" v-html="parameterKatex[index]" />
           </b-tooltip>
         </template>
 
         <b-numberinput
           v-if="parameter.type === 'Integer' || parameter.type === 'Float'"
           v-model="parameter.value"
+          :aria-label="parameter.name"
           :controls="false"
           :step="parameter.type === 'Integer' ? 1 : 'any'"
         />
-        <b-input v-else v-model="parameter.value" />
+        <b-input
+          v-else
+          v-model="parameter.value"
+          :aria-label="parameter.name"
+        />
       </b-field>
 
       <hr />
