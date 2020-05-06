@@ -52,7 +52,7 @@
             class="column is-3 is-2-widescreen sidebar is-paddingless-touch"
           >
             <b-sidebar
-              :position="mobile ? 'fixed' : 'static'"
+              :position="position"
               type="is-white"
               :overlay="mobile"
               :fullheight="true"
@@ -133,16 +133,28 @@ export default {
       calculators: this.$calculators,
       icon,
       mobile: false,
-      open: false
+      open: false,
+      loaded: false
     }
   },
   computed: {
     openComputed: {
       get() {
-        return this.mobile ? this.open : true
+        if (this.mobile) {
+          return this.open
+        } else {
+          return this.loaded
+        }
       },
       set(value) {
         this.open = value
+      }
+    },
+    position() {
+      if (this.mobile) {
+        return 'fixed'
+      } else {
+        return 'static'
       }
     }
   },
@@ -150,8 +162,9 @@ export default {
     const setMobile = () => {
       this.mobile = window.innerWidth <= 1023
     }
-    window.onresize = setMobile
+    window.onresize = () => setMobile()
     setMobile()
+    this.loaded = true
   },
   methods: {
     onPage(pageName) {
