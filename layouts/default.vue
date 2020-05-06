@@ -59,6 +59,7 @@
               :fullwidth="!mobile"
               :open.sync="openComputed"
               :right="true"
+              :mobile="!loaded ? 'hide' : undefined"
               class="is-paddingless-desktop"
             >
               <div class="padded is-paddingless-desktop">
@@ -143,7 +144,7 @@ export default {
         if (this.mobile) {
           return this.open
         } else {
-          return this.loaded
+          return true
         }
       },
       set(value) {
@@ -164,7 +165,9 @@ export default {
     }
     window.onresize = () => setMobile()
     setMobile()
-    this.loaded = true
+    window.setTimeout(() => {
+      this.loaded = true
+    }, 251)
   },
   methods: {
     onPage(pageName) {
