@@ -28,49 +28,88 @@
           GitHub
         </b-navbar-item>
       </template>
+
+      <template slot="burger">
+        <a
+          role="button"
+          class="navbar-burger burger"
+          :class="{ 'is-active': open }"
+          aria-label="menu"
+          :aria-expanded="open"
+          @click="burgerClick"
+        >
+          <span aria-hidden="true" />
+          <span aria-hidden="true" />
+          <span aria-hidden="true" />
+        </a>
+      </template>
     </b-navbar>
 
     <div class="main-content container">
       <section class="section">
-        <div class="columns">
-          <aside class="column is-3-desktop is-2-widescreen sidebar">
-            <b-menu>
-              <b-menu-list aria-role="menu" label="Pages">
-                <b-menu-item
-                  v-for="(page, index) in pages"
-                  :key="index"
-                  :label="page.title"
-                  :to="`/${page.name}`"
-                  :active="onPage(page.name)"
-                  tag="nuxt-link"
-                  aria-role="menuitem"
-                />
-              </b-menu-list>
-              <b-menu-list aria-role="menu" label="Calculators">
-                <b-menu-item
-                  v-for="(calculator, index) in calculators"
-                  :key="index"
-                  :label="calculator.title"
-                  :to="`/calculator/${calculator.name}`"
-                  :active="onPage(`calculator/${calculator.name}`)"
-                  tag="nuxt-link"
-                  aria-role="menuitem"
-                />
-              </b-menu-list>
-            </b-menu>
+        <div class="columns is-desktop">
+          <aside
+            class="column is-3 is-2-widescreen sidebar is-paddingless-touch"
+          >
+            <b-sidebar
+              :position="mobile ? 'fixed' : 'static'"
+              type="is-white"
+              :overlay="mobile"
+              :fullheight="true"
+              :fullwidth="!mobile"
+              :open.sync="openComputed"
+              :right="true"
+              class="is-paddingless-desktop"
+            >
+              <div class="padded is-paddingless-desktop">
+                <b-menu>
+                  <b-menu-list aria-role="menu" label="Pages">
+                    <b-menu-item
+                      v-for="(page, index) in pages"
+                      :key="index"
+                      :label="page.title"
+                      :to="`/${page.name}`"
+                      :active="onPage(page.name)"
+                      tag="nuxt-link"
+                      aria-role="menuitem"
+                    />
+                  </b-menu-list>
+                  <b-menu-list aria-role="menu" label="Calculators">
+                    <b-menu-item
+                      v-for="(calculator, index) in calculators"
+                      :key="index"
+                      :label="calculator.title"
+                      :to="`/calculator/${calculator.name}`"
+                      :active="onPage(`calculator/${calculator.name}`)"
+                      tag="nuxt-link"
+                      aria-role="menuitem"
+                    />
+                  </b-menu-list>
+                  <b-menu-list v-if="mobile" aria-role="menu" label="Other">
+                    <b-menu-item
+                      label="GitHub"
+                      href="https://github.com/jonathanjameswatson/numerically-solving-equations"
+                      tag="a"
+                      aria-role="menuitem"
+                    />
+                  </b-menu-list>
+                </b-menu>
+              </div>
+            </b-sidebar>
             <button
-              class="button button-stick is-hidden-mobile is-primary is-outlined"
+              class="button button-stick is-hidden-touch is-primary is-outlined"
               @click="scrollToTop()"
             >
               <span class="icon">▲</span>
               <span>Back to top</span>
             </button>
-            <hr class="is-hidden-tablet" />
           </aside>
 
-          <div class="column is-8-widescreen is-offset-1-widescreen is-9">
+          <div
+            class="column is-8-widescreen is-9-desktop is-8-tablet is-12-mobile is-offset-1-widescreen is-offset-0-desktop is-offset-2-tablet"
+          >
             <nuxt />
-            <div class="is-hidden-tablet">
+            <div class="is-hidden-desktop">
               <hr />
               <button class="button is-link" @click="scrollToTop()">
                 <span class="icon">▲</span>
@@ -92,8 +131,27 @@ export default {
     return {
       pages: this.$pages,
       calculators: this.$calculators,
-      icon
+      icon,
+      mobile: false,
+      open: false
     }
+  },
+  computed: {
+    openComputed: {
+      get() {
+        return this.mobile ? this.open : true
+      },
+      set(value) {
+        this.open = value
+      }
+    }
+  },
+  mounted() {
+    const setMobile = () => {
+      this.mobile = window.innerWidth <= 1023
+    }
+    window.onresize = setMobile
+    setMobile()
   },
   methods: {
     onPage(pageName) {
@@ -101,6 +159,9 @@ export default {
     },
     scrollToTop() {
       window.scrollTo(0, 0)
+    },
+    burgerClick() {
+      this.open = !this.open
     }
   }
 }

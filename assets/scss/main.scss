@@ -4,6 +4,7 @@ $primary: #D82255;
 $text-light: #797676;
 
 @import "bulma/sass/utilities/_all";
+@import "~buefy/src/scss/utils/_all";
 
 html {
   scroll-behavior: smooth;
@@ -66,8 +67,32 @@ input[type="number"] {
   margin-right: 1px;
 }
 
+.padded {
+  padding: 1em;
+}
+
+.sidebar-content {
+  @include desktop {
+    box-shadow: none !important;
+  }
+}
+
+.is-paddingless-desktop {
+  @include desktop {
+    padding: 0em !important;
+  }
+}
+
+.is-paddingless-touch {
+  @include touch {
+    padding: 0em !important;
+  }
+}
+
 @import "bulma/sass/base/_all.sass";
+@import "bulma/sass/components/dropdown.sass";
 @import "bulma/sass/components/menu.sass";
+@import "bulma/sass/components/modal.sass";
 @import "bulma/sass/components/navbar.sass";
 @import "bulma/sass/elements/button.sass";
 @import "bulma/sass/elements/container.sass";
@@ -79,3 +104,5 @@ input[type="number"] {
 @import "bulma/sass/layout/section.sass";
 @import "bulma/sass/layout/hero.sass";
 @import "~buefy/src/scss/components/_tooltip.scss";
+@import "~buefy/src/scss/components/_dropdown.scss";
+@import "~buefy/src/scss/components/_sidebar.scss";

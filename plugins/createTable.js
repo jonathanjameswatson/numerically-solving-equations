@@ -40,9 +40,7 @@ const createTable = (calculatorKey, f, parameters, decimalPlaces) => {
       start = `${i} &`
     }
 
-    return `${start} ${Object.entries(row)
-      .map(addF)
-      .join(' & ')} \\\\ \\hline`
+    return `${start} ${Object.entries(row).map(addF).join(' & ')} \\\\ \\hline`
   }
 
   const columnTitles = columns.flatMap(generateColumnTitle)
