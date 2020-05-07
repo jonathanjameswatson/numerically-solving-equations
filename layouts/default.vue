@@ -73,6 +73,7 @@
                       :active="onPage(page.name)"
                       tag="nuxt-link"
                       aria-role="menuitem"
+                      @click.native="close"
                     />
                   </b-menu-list>
                   <b-menu-list aria-role="menu" label="Calculators">
@@ -84,6 +85,7 @@
                       :active="onPage(`calculator/${calculator.name}`)"
                       tag="nuxt-link"
                       aria-role="menuitem"
+                      @click.native="close"
                     />
                   </b-menu-list>
                   <b-menu-list v-if="mobile" aria-role="menu" label="Other">
@@ -92,6 +94,7 @@
                       href="https://github.com/jonathanjameswatson/numerically-solving-equations"
                       tag="a"
                       aria-role="menuitem"
+                      @click.native="close"
                     />
                   </b-menu-list>
                 </b-menu>
@@ -178,6 +181,9 @@ export default {
     },
     burgerClick() {
       this.open = !this.open
+    },
+    close() {
+      this.open = false
     }
   }
 }
