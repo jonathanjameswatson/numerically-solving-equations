@@ -21,7 +21,7 @@
     "markdown-it-toc-done-right": "^4.1.0",
     "mathjs": "^6.6.4",
     "nuxt": "^2.12.2",
-    "nuxt-buefy": "^0.3.28",
+    "nuxt-buefy": "^0.3.31",
     "nuxt-responsive-loader": "^2.0.1",
     "p5": "^1.0.0",
     "sharp": "^0.25.2"
