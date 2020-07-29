@@ -31,7 +31,8 @@ export default {
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@aceforth/nuxt-optimized-images'
   ],
   /*
    ** Nuxt.js modules
@@ -40,7 +41,6 @@ export default {
     // Doc: https://buefy.github.io/#/documentation
     ['nuxt-buefy', { css: false, materialDesignIcons: false }],
     '@nuxtjs/pwa',
-    'nuxt-responsive-loader',
     '@nuxtjs/markdownit',
     '~/modules/routes.js',
     '@nuxtjs/sitemap'
@@ -117,9 +117,12 @@ export default {
   /*
    ** Responsive loader configuration
    */
-  responsiveLoader: {
-    min: 16,
-    max: 128,
-    adapter: sharp
+  optimizedImages: {
+    optimizeImages: true,
+    responsive: {
+      min: 16,
+      max: 128,
+      steps: 4
+    }
   }
 }

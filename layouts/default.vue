@@ -128,7 +128,7 @@
 </template>
 
 <script>
-const icon = require('~/assets/icon.png')
+const icon = require('~/assets/icon.png?resize')
 
 export default {
   data() {
