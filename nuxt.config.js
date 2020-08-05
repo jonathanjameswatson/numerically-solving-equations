@@ -1,9 +1,9 @@
-import sharp from 'responsive-loader/sharp'
-
 import markdownItPlugin from './markdownItPlugin.js'
 
 export default {
   mode: 'universal',
+  target: 'static',
+  components: true,
   /*
    ** Customize the progress-bar color
    */

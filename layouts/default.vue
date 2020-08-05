@@ -51,55 +51,7 @@
           <aside
             class="column is-3 is-2-widescreen sidebar is-paddingless-touch"
           >
-            <b-sidebar
-              :position="position"
-              type="is-white"
-              :overlay="mobile"
-              :fullheight="true"
-              :fullwidth="!mobile"
-              :open.sync="openComputed"
-              :right="true"
-              :mobile="!loaded ? 'hide' : undefined"
-              class="is-paddingless-desktop"
-            >
-              <div class="padded is-paddingless-desktop">
-                <b-menu>
-                  <b-menu-list aria-role="menu" label="Pages">
-                    <b-menu-item
-                      v-for="(page, index) in pages"
-                      :key="index"
-                      :label="page.title"
-                      :to="`/${page.name}`"
-                      :active="onPage(page.name)"
-                      tag="nuxt-link"
-                      aria-role="menuitem"
-                      @click.native="close"
-                    />
-                  </b-menu-list>
-                  <b-menu-list aria-role="menu" label="Calculators">
-                    <b-menu-item
-                      v-for="(calculator, index) in calculators"
-                      :key="index"
-                      :label="calculator.title"
-                      :to="`/calculator/${calculator.name}`"
-                      :active="onPage(`calculator/${calculator.name}`)"
-                      tag="nuxt-link"
-                      aria-role="menuitem"
-                      @click.native="close"
-                    />
-                  </b-menu-list>
-                  <b-menu-list v-if="mobile" aria-role="menu" label="Other">
-                    <b-menu-item
-                      label="GitHub"
-                      href="https://github.com/jonathanjameswatson/numerically-solving-equations"
-                      tag="a"
-                      aria-role="menuitem"
-                      @click.native="close"
-                    />
-                  </b-menu-list>
-                </b-menu>
-              </div>
-            </b-sidebar>
+            <sidebar />
             <button
               class="button button-stick is-hidden-touch is-primary is-outlined"
               @click="scrollToTop()"
@@ -124,6 +76,8 @@
         </div>
       </section>
     </div>
+
+    <sidebar mobile :open.sync="open" />
   </div>
 </template>
 
@@ -133,49 +87,11 @@ const icon = require('~/assets/icon.png?resize')
 export default {
   data() {
     return {
-      pages: this.$pages,
-      calculators: this.$calculators,
       icon,
-      mobile: false,
-      open: false,
-      loaded: false
+      open: false
     }
-  },
-  computed: {
-    openComputed: {
-      get() {
-        if (this.mobile) {
-          return this.open
-        } else {
-          return true
-        }
-      },
-      set(value) {
-        this.open = value
-      }
-    },
-    position() {
-      if (this.mobile) {
-        return 'fixed'
-      } else {
-        return 'static'
-      }
-    }
-  },
-  mounted() {
-    const setMobile = () => {
-      this.mobile = window.innerWidth <= 1023
-    }
-    window.onresize = () => setMobile()
-    setMobile()
-    window.setTimeout(() => {
-      this.loaded = true
-    }, 251)
   },
   methods: {
-    onPage(pageName) {
-      return `/${pageName}` === this.$route.path
-    },
     scrollToTop() {
       window.scrollTo(0, 0)
     },

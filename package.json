@@ -20,7 +20,7 @@
     "markdown-it-anchor": "^5.3.0",
     "markdown-it-toc-done-right": "^4.1.0",
     "mathjs": "^7.1.0",
-    "nuxt": "^2.14.0",
+    "nuxt": "^2.14.1",
     "nuxt-buefy": "^0.3.31",
     "p5": "^1.1.9",
     "sharp": "^0.25.4"
@@ -30,14 +30,14 @@
     "@nuxtjs/eslint-config": "^3.1.0",
     "@nuxtjs/eslint-module": "^2.0.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.5.0",
+    "eslint": "^7.6.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-nuxt": ">=1.0.0",
     "eslint-plugin-prettier": "^3.1.4",
     "imagemin-pngquant": "^9.0.0",
     "node-sass": "^4.14.1",
     "prettier": "^2.0.5",
-    "responsive-loader": "^1.2.0",
-    "sass-loader": "^9.0.2"
+    "responsive-loader": "^2.0.0",
+    "sass-loader": "^9.0.3"
   }
 }

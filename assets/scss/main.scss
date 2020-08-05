@@ -77,18 +77,6 @@ input[type="number"] {
   }
 }
 
-.is-paddingless-desktop {
-  @include desktop {
-    padding: 0em !important;
-  }
-}
-
-.is-paddingless-touch {
-  @include touch {
-    padding: 0em !important;
-  }
-}
-
 @import "bulma/sass/base/_all.sass";
 @import "bulma/sass/components/dropdown.sass";
 @import "bulma/sass/components/menu.sass";
