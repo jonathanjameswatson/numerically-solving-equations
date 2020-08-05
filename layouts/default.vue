@@ -97,9 +97,6 @@ export default {
     },
     burgerClick() {
       this.open = !this.open
-    },
-    close() {
-      this.open = false
     }
   }
 }

@@ -9,7 +9,7 @@
     :mobile="mobile ? undefined : 'hide'"
     :class="mobile ? 'is-hidden-desktop' : 'is-paddingless'"
     :open="open"
-    @close="$emit('update:open', false)"
+    @close="close"
   >
     <div :class="mobile ? 'padded' : undefined">
       <b-menu>
@@ -68,6 +68,9 @@ export default {
   methods: {
     onPage(pageName) {
       return `/${pageName}` === this.$route.path
+    },
+    close() {
+      this.$emit('update:open', false)
     }
   }
 }
