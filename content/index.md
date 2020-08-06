@@ -1,4 +1,7 @@
-# Numerically Solving Equations
+---
+title: Numerically Solving Equations
+order: 0
+---
 
 This is a website about numerical methods and numerical methods for solving equations.
 
@@ -10,12 +13,10 @@ Numerical methods are useful for solving equations when it is difficult or impos
 
 This website makes use of mathematical typesetting to show expressions like below:
 
-$$ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} $$
+$$
+x^6 + 4x - 3
+$$
 
 This website also makes use of spreadsheets as well as interactive examples that demonstrate visually the processes of numerical methods.
 
-```sketch
-falseposition2
-```
-
-Click the example above to play.
+<sketch name="falseposition2" play></sketch>

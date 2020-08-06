@@ -58,6 +58,15 @@ input[type="number"] {
   overflow: hidden;
 }
 
+.sketch-container {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+
+  .sketch:not(:last-child) {
+    margin-bottom: 0.2rem;
+  }
+}
+
 .content figure.is-16by9 {
   margin-left: 0.2em;
   margin-right: 0.2em;

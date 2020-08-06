@@ -1,5 +1,3 @@
-import markdownItPlugin from './markdownItPlugin.js'
-
 export default {
   mode: 'universal',
   target: 'static',
@@ -21,11 +19,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    '~/plugins/contents.js',
-    '~/plugins/math.js',
-    '~/plugins/createTable.js'
-  ],
+  plugins: ['~/plugins/math.js', '~/plugins/createTable.js'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -41,34 +35,17 @@ export default {
     // Doc: https://buefy.github.io/#/documentation
     ['nuxt-buefy', { css: false, materialDesignIcons: false }],
     '@nuxtjs/pwa',
-    '@nuxtjs/markdownit',
-    '~/modules/routes.js',
+    '@nuxt/content',
     '@nuxtjs/sitemap'
   ],
   /*
-   ** Markdownit configuration
+   ** Content configuration
    */
-  markdownit: {
-    typographer: true,
-    linkify: true,
-    breaks: true,
-    use: [
-      [
-        'markdown-it-anchor',
-        {
-          permalink: true,
-          level: 2
-        }
-      ],
-      '@liradb2000/markdown-it-katex',
-      [
-        'markdown-it-toc-done-right',
-        {
-          level: 2
-        }
-      ],
-      markdownItPlugin
-    ]
+  content: {
+    markdown: {
+      remarkPlugins: ['remark-math', 'remark-textr'],
+      rehypePlugins: ['rehype-katex']
+    }
   },
   /*
    ** Generate configuration

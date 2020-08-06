@@ -1,6 +1,7 @@
-# Calculator guide
-
-[toc]
+---
+title: Calculator guide
+order: 7
+---
 
 This website has several calculators for numerical methods can be found on the menu under the calculators section.
 

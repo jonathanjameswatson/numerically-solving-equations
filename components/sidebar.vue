@@ -15,11 +15,11 @@
       <b-menu>
         <b-menu-list aria-role="menu" label="Pages">
           <b-menu-item
-            v-for="(page, index) in $pages"
+            v-for="(page, index) in pages"
             :key="index"
             :label="page.title"
-            :to="`/${page.name}`"
-            :active="onPage(page.name)"
+            :to="`/${page.slug}`"
+            :active="onPage(page.slug)"
             tag="nuxt-link"
             aria-role="menuitem"
             @click.native="close"
@@ -27,11 +27,11 @@
         </b-menu-list>
         <b-menu-list aria-role="menu" label="Calculators">
           <b-menu-item
-            v-for="(calculator, index) in $calculators"
+            v-for="(calculator, index) in calculators"
             :key="index"
             :label="calculator.title"
-            :to="`/calculator/${calculator.name}`"
-            :active="onPage(`calculator/${calculator.name}`)"
+            :to="`/calculator/${calculator.slug}`"
+            :active="onPage(`calculator/${calculator.slug}`)"
             tag="nuxt-link"
             aria-role="menuitem"
             @click.native="close"
@@ -63,6 +63,14 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    pages: {
+      type: Array,
+      required: true
+    },
+    calculators: {
+      type: Array,
+      required: true
     }
   },
   methods: {

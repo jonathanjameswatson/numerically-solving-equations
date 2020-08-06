@@ -1,4 +1,7 @@
-# Finding errors
+---
+title: Finding errors
+order: 1
+---
 
 An approximation is any value that is similar but not equal to something else.
 
@@ -12,20 +15,30 @@ Approximations are often used when the exact value is too difficult to be worth 
 
 An example of an approximation is the value 3.14 being used as an approximation of $\pi$.
 
-$$\text{let } X = \text{approximation}$$
+$$
+\text{let } X = \text{approximation}
+$$
 
-$$\text{let } x = \text{exact value}$$
+$$
+\text{let } x = \text{exact value}
+$$
 
-$$\text{absolute error} = X - x$$
+$$
+\text{absolute error} = X - x
+$$
 
-$$\text{relative error} = \frac{X - x}{x} \text{ (if }x \neq 0)$$
+$$
+\text{relative error} = \frac{X - x}{x} \text{ (if }x \neq 0)
+$$
 
 Absolute errors show the difference between an approximation and its exact value while relative errors take into account the ratio of the error to the exact value.
 
-$$\begin{array}{|c|c|c|c|}
+$$
+\begin{array}{|c|c|c|c|}
 \hline
 \text{Exact value, } x & \text{Approximation, } X & \text{Absolute error, } X - x & \text{Relative error, (6 d.p.) } \frac{X - x}{x}\\ \hline
 5.43 & 5.4 & -0.03 & -0.005525 \\ \hline
 1642 & 2000 & 358 & 0.218027 \\ \hline
 0.05 & 0.1 & 0.05 & 1 \\ \hline
-\end{array}$$
+\end{array}
+$$

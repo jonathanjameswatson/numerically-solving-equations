@@ -1,4 +1,7 @@
-# Roots of equations
+---
+title: Roots of equations
+order: 4
+---
 
 The roots of an equation are the values of x where the equation is true.
 
@@ -6,19 +9,11 @@ $$\text{The roots of } x^2 = 4 \text{ are } x = 2 \text{ and } x = -2\text{.}$$
 
 The roots of a function are where $y = 0$ or $f(x) = 0$.
 
-```sketch
-roots
-```
-
-Click the example above to play.
+<sketch name="roots" play></sketch>
 
 You can see if a root is between two values by looking for a change of sign in the y value.
 
-```sketch
-changeofsign
-```
-
-Click the example above to play.
+<sketch name="changeofsign" play></sketch>
 
 In the example below, 0.5 is proven to be a root.
 

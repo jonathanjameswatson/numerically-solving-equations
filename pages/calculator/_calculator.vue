@@ -74,9 +74,8 @@ import calculators from '~/js/calculators'
 export default {
   asyncData({ params, error, app }) {
     const name = params.calculator
-    const calculatorKey = app.calculators.find(
-      (calculator) => calculator.name === name
-    ).file
+    const dashes = /-([a-z])/g
+    const calculatorKey = name.replace(dashes, (match, p1) => p1.toUpperCase())
     const calculator = calculators[calculatorKey]
 
     if (calculator === undefined) {

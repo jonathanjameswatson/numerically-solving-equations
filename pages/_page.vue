@@ -1,20 +1,22 @@
 <template>
-  <div class="content" v-html="content" />
+  <div class="content">
+    <h1>{{ document.title }}</h1>
+    <ol v-if="document.toc">
+      <li v-for="link of document.toc" :key="link.id">
+        <nuxt-link :to="`#${link.id}`">{{ link.text }}</nuxt-link>
+      </li>
+    </ol>
+    <nuxt-content class="content" :document="document" />
+  </div>
 </template>
 
 <script>
-const anchorRegExp = RegExp('(?!<a href=\\"e)#.+?(?=\\">)', 'g')
-
 export default {
-  async asyncData({ params, error }) {
+  async asyncData({ $content, params, error }) {
     const page = params.page || 'index'
     try {
-      const Content = await import(`~/assets/contents/${page}.md`)
-      const linkFixedContent = Content.default.replace(
-        anchorRegExp,
-        (match) => `${page}${match}`
-      )
-      return { page, content: linkFixedContent }
+      const document = await $content(page).fetch()
+      return { page, document }
     } catch (err) {
       error({
         statusCode: 404,
@@ -51,7 +53,7 @@ export default {
   head() {
     if (this.page !== 'index') {
       return {
-        title: this.$pages.find((object) => object.name === this.page).title
+        title: this.document.title
       }
     }
   }

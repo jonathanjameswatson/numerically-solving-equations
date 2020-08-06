@@ -51,7 +51,7 @@
           <aside
             class="column is-3 is-2-widescreen sidebar is-paddingless-touch"
           >
-            <sidebar />
+            <sidebar :pages="pages" :calculators="calculators" />
             <button
               class="button button-stick is-hidden-touch is-primary is-outlined"
               @click="scrollToTop()"
@@ -77,18 +77,42 @@
       </section>
     </div>
 
-    <sidebar mobile :open.sync="open" />
+    <sidebar
+      :pages="pages"
+      :calculators="calculators"
+      mobile
+      :open.sync="open"
+    />
   </div>
 </template>
 
 <script>
+import calculators from '~/js/calculators'
 const icon = require('~/assets/icon.png?resize')
 
 export default {
+  async fetch() {
+    const pages = await this.$content('/')
+      .only(['slug', 'title'])
+      .where({ slug: { $ne: 'index' } })
+      .sortBy('order')
+      .fetch()
+    this.pages = pages
+
+    const capitals = /[A-Z]/g
+    this.calculators = Object.getOwnPropertyNames(calculators).map((name) => {
+      return {
+        title: calculators[name].name,
+        slug: name.replace(capitals, (match) => `-${match.toLowerCase()}`)
+      }
+    })
+  },
   data() {
     return {
       icon,
-      open: false
+      open: false,
+      pages: [],
+      calculators: []
     }
   },
   methods: {
