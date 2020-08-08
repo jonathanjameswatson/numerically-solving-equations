@@ -92,7 +92,7 @@ const icon = require('~/assets/icon.png?resize')
 
 export default {
   async fetch() {
-    const pages = await this.$content('/')
+    const pages = await this.$content()
       .only(['slug', 'title'])
       .where({ slug: { $ne: 'index' } })
       .sortBy('order')
