@@ -48,9 +48,7 @@
     <div class="main-content container">
       <section class="section">
         <div class="columns is-desktop">
-          <aside
-            class="column is-3 is-2-widescreen sidebar is-paddingless-touch"
-          >
+          <aside class="column is-3 is-2-widescreen sidebar is-hidden-touch">
             <sidebar :pages="pages" :calculators="calculators" />
             <button
               class="button button-stick is-hidden-touch is-primary is-outlined"
