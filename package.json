@@ -37,7 +37,7 @@
     "imagemin-pngquant": "^9.0.0",
     "node-sass": "^4.14.1",
     "prettier": "^2.0.5",
-    "responsive-loader": "^2.0.0",
+    "responsive-loader": "^2.0.1",
     "sass-loader": "^9.0.3"
   }
 }
