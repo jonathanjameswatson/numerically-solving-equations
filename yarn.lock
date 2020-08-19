@@ -2,12 +2,12 @@
 # yarn lockfile v1
 
 
-"@aceforth/nuxt-optimized-images@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@aceforth/nuxt-optimized-images/-/nuxt-optimized-images-1.1.0.tgz#d281ef76a81b34af94c66e7a038420f776467200"
-  integrity sha512-2nsUfrK0/p00YjE2n1jq0Xfl95ZZ7HROzEJ2b3r6JMOnqDlZH5S1lt/RC6QSJVUGqp7E2/Ka5flE0YdMO6+t0w==
+"@aceforth/nuxt-optimized-images@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@aceforth/nuxt-optimized-images/-/nuxt-optimized-images-1.2.0.tgz#6c360214999391c6f6ea4753b9f22391c41b3ec7"
+  integrity sha512-O2DloFW1G7yzzSaRvxLXaEABmgmNnFfB6ZgiWnONIb98UNrJTW5riH7KU2zqlGabc1Uf31u9kI76ESvw6JOdiw==
   dependencies:
-    consola "^2.14.0"
+    consola "^2.15.0"
     imagemin "^7.0.1"
     img-loader "^3.0.1"
     raw-loader "^4.0.1"
