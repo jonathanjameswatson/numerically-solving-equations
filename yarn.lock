@@ -9709,13 +9709,13 @@ responselike@1.0.2:
   dependencies:
     lowercase-keys "^1.0.0"
 
-responsive-loader@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/responsive-loader/-/responsive-loader-2.0.2.tgz#2321a4ad6076f8d1777818b4d00719995086e7ed"
-  integrity sha512-5SiZLBHBn1EXwtXjVBMzGHYlekz641oAVZb39DB1btuxmrrNDWCroM3+zjw2F1vTix79BqIq6WWlTpuy1ZEd2Q==
+responsive-loader@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/responsive-loader/-/responsive-loader-2.1.1.tgz#462b34601fb1200740ab7aba05c99040dea22d64"
+  integrity sha512-5vv37eOR6M+fnUakZRkldR0Z/35MaCziap2re+eDiQPq6+1uy4onTk7aZ1OZM+iUAz6Ove6hnEBOfmRYHmq/6w==
   dependencies:
     loader-utils "^2.0.0"
-    schema-utils "^2.7.0"
+    schema-utils "^2.7.1"
 
 restore-cursor@^3.1.0:
   version "3.1.0"
