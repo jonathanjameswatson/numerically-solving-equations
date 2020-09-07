@@ -18,7 +18,7 @@
     "katex": "^0.12.0",
     "mathjs": "^7.2.0",
     "nuxt": "^2.14.4",
-    "nuxt-buefy": "^0.4.2",
+    "nuxt-buefy": "^0.4.3",
     "p5": "^1.1.9",
     "rehype-katex": "^4.0.0",
     "remark-math": "^3.0.1",
