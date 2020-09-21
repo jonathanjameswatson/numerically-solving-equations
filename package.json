@@ -36,7 +36,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "imagemin-pngquant": "^9.0.0",
     "node-sass": "^4.14.1",
-    "prettier": "^2.1.1",
+    "prettier": "^2.1.2",
     "responsive-loader": "^2.0.2",
     "sass-loader": "^10.0.2"
   }
