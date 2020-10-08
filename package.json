@@ -21,7 +21,7 @@
     "nuxt-buefy": "^0.4.3",
     "p5": "^1.1.9",
     "rehype-katex": "^4.0.0",
-    "remark-math": "^3.0.1",
+    "remark-math": "^4.0.0",
     "remark-textr": "^4.0.0",
     "sharp": "^0.26.1"
   },
