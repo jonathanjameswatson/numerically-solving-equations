@@ -35,7 +35,7 @@
     "eslint-plugin-nuxt": ">=1.0.0",
     "eslint-plugin-prettier": "^3.1.4",
     "imagemin-pngquant": "^9.0.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "prettier": "^2.1.2",
     "responsive-loader": "^2.1.1",
     "sass-loader": "^10.0.2"
