@@ -1,5 +1,4 @@
 export default {
-  mode: 'universal',
   target: 'static',
   components: true,
   /*
@@ -101,5 +100,11 @@ export default {
       max: 128,
       steps: 4
     }
+  },
+  /*
+   ** Webpack configuration
+   */
+  build: {
+    transpile: ['remark-math', 'remark-textr', 'rehype-katex']
   }
 }
