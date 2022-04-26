@@ -3,7 +3,7 @@ name: Deploy to GitHub pages
 on:
   push:
     branches:
-     - master
+     - main
 
 jobs:
   deploy:
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - 
+    -
       name: Checkout
       uses: actions/checkout@v2
     -
@@ -19,20 +19,18 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
-    - 
+    -
       name: Install
       run: yarn install
-    - 
+    -
       name: Generate
       run: yarn run generate --if-present
-    - 
+    -
       name: Deploy
       if: success()
-      uses: crazy-max/ghaction-github-pages@v1
+      uses: crazy-max/ghaction-github-pages@v2
       with:
         target_branch: gh-pages
         build_dir: dist
       env:
-        GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
-    
-      
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
