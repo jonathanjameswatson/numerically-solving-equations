@@ -24,8 +24,7 @@ export default {
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module',
-    '@aceforth/nuxt-optimized-images'
+    '@nuxtjs/eslint-module'
   ],
   /*
    ** Nuxt.js modules
@@ -89,17 +88,6 @@ export default {
   sitemap: {
     hostname: 'https://jonathanjameswatson.com',
     gzip: true
-  },
-  /*
-   ** Responsive loader configuration
-   */
-  optimizedImages: {
-    optimizeImages: true,
-    responsive: {
-      min: 16,
-      max: 128,
-      steps: 4
-    }
   },
   /*
    ** Webpack configuration

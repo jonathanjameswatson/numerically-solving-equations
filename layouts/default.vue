@@ -3,19 +3,8 @@
     <b-navbar type="is-primary" wrapper-class="container">
       <template slot="brand">
         <b-navbar-item tag="nuxt-link" to="/">
-          <figure class="image is-16x16 logo">
-            <img
-              :srcSet="icon.srcSet"
-              :src="icon.src"
-              sizes="16px"
-              alt="Numerically Solving Equations"
-            />
-          </figure>
-          <h1
-            class="title has-text-light is-6 has-text-weight-normal"
-            aria-hidden="true"
-          >
-            umerically Solving Equations
+          <h1 class="title has-text-light is-6 has-text-weight-normal">
+            Numerically Solving Equations
           </h1>
         </b-navbar-item>
       </template>
@@ -60,7 +49,16 @@
           </aside>
 
           <div
-            class="column is-8-widescreen is-9-desktop is-8-tablet is-12-mobile is-offset-1-widescreen is-offset-0-desktop is-offset-2-tablet"
+            class="
+              column
+              is-8-widescreen
+              is-9-desktop
+              is-8-tablet
+              is-12-mobile
+              is-offset-1-widescreen
+              is-offset-0-desktop
+              is-offset-2-tablet
+            "
           >
             <nuxt />
             <div class="is-hidden-desktop">
@@ -86,7 +84,6 @@
 
 <script>
 import calculators from '~/js/calculators'
-const icon = require('~/assets/icon.png?resize')
 
 export default {
   async fetch() {
@@ -107,7 +104,6 @@ export default {
   },
   data() {
     return {
-      icon,
       open: false,
       pages: [],
       calculators: []
