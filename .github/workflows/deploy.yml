@@ -3,30 +3,28 @@ name: Deploy to GitHub pages
 on:
   push:
     branches:
-     - main
+      - main
 
 jobs:
   deploy:
-
     runs-on: ubuntu-latest
 
     steps:
-    -
-      name: Checkout
-      uses: actions/checkout@v2
-    -
-      name: Use Node.js 12.x
-      uses: actions/setup-node@v1
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Use Node.js 14
+      uses: actions/setup-node@v3
       with:
-        node-version: 12.x
-    -
-      name: Install
+        node-version: 14
+
+    - name: Install
       run: yarn install
-    -
-      name: Generate
-      run: yarn run generate --if-present
-    -
-      name: Deploy
+
+    - name: Generate
+      run: yarn generate
+
+    - name: Deploy
       if: success()
       uses: crazy-max/ghaction-github-pages@v2
       with:
