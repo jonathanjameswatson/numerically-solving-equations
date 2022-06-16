@@ -2,8 +2,10 @@
   "name": "numerically-solving-equations",
   "version": "1.0.0",
   "description": "A website about numerically solving equations",
-  "author": "Jonathan J Watson",
-  "private": true,
+  "homepage": "https://jonathanjameswatson.com/numerically-solving-equations",
+  "license": "MIT",
+  "author": "Jonathan Watson",
+  "repository": "github:jonathanjameswatson/numerically-solving-equations",
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
@@ -35,5 +37,6 @@
     "prettier": "^2.6.2",
     "sass": "^1.51.0",
     "sass-loader": "^10.1.1"
-  }
+  },
+  "private": true
 }
