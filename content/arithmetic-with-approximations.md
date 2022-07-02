@@ -90,10 +90,12 @@ $$
 Below are some rules on finding boundaries.
 
 $$
-a \leq x < b$$
+a \leq x < b
+$$
 
 $$
-c \leq y < d$$
+c \leq y < d
+$$
 
 $$
 a + c \leq x + y < b + d
@@ -148,30 +150,38 @@ Most computers use many more significant figures or decimal places, but outputs 
 ## Propagation of relative error
 
 $$
-X \text{ is an approximation to } x \text{ with relative error r}$$
+X \text{ is an approximation to } x \text{ with relative error r}
+$$
 
 $$
-Y \text{ is an approximation to } y \text{ with relative error s}$$
+Y \text{ is an approximation to } y \text{ with relative error s}
+$$
 
 The below example shows the propagation of relative error when multiplying approximations.
 
 $$
-\frac{X - x}{x} = r$$
+\frac{X - x}{x} =
+$$
 
 $$
-\frac{Y - y}{y} = s$$
+\frac{Y - y}{y} = s
+$$
 
 $$
-X = xr + x = x(1 + r)$$
+X = xr + x = x(1 + r)
+$$
 
 $$
-Y = ys + y = y(1 + s)$$
+Y = ys + y = y(1 + s)
+$$
 
 $$
-XY = xy(1 + r)(1 + s)$$
+XY = xy(1 + r)(1 + s)
+$$
 
 $$
-XY = xy(1 + r + s + rs)$$
+XY = xy(1 + r + s + rs)
+$$
 
 $$
 r \text{ and } s \text{ are very small so } rs \approx 0
@@ -246,7 +256,11 @@ $$
 The above examples give the statement below:
 
 $$
-r + s \text{ and } r - s \leq \lvert r \rvert + \lvert s \rvert \therefore
+r + s \text{ and } r - s \leq \lvert r \rvert + \lvert s \rvert
+$$
+
+$$
+\therefore
 $$
 
 $$
@@ -265,6 +279,6 @@ $$
 g(x) = 2x^2-4x+2.00001 \text{ has no real roots}
 $$
 
-The turning point of the curve with a y-intercept of 2 is at y = 0. If the y-intercept is increased, the turning point will be raised above the x-axis so curve will not have any roots.
+The turning point of the curve with a y-intercept of 2 is at y = 0. If the y-intercept is increased, the turning point will be raised above the x-axis, so curve will not have any roots.
 
 Many of these problems involve coefficients changing to drastically change y-intercepts and gradients as well as the intersection of functions. In order to avoid problems occurring, perform calculations with a high accuracy in order to reduce rounding errors.
